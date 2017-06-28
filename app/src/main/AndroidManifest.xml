@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="autobike.stanley.idv.android_autobike_v7">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/android6_notext"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".welcome.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".navigationlayout.Navi_Member_Data" />
+        <activity android:name=".navigationlayout.Navi_Rent_List" />
+        <activity android:name=".navigationlayout.Navi_Sell_List" />
+        <activity android:name=".navigationlayout.Navi_IDCheck" />
+        <activity android:name=".navigationlayout.Navi_Setting" />
+        <activity android:name=".tab.rentbike.Tab_RentBike_Fragment" />
+        <activity android:name=".tab.TabSellBike" />
+        <activity android:name=".tab.TabNews" />
+        <activity android:name=".tab.TabBoardMessage" />
+        <activity android:name=".tab.TabLocation"></activity>
+    </application>
+
+</manifest>
