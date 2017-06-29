@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f6ca31"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.TabNews">
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNews"
+        android:layout_margin="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="tab3"
-        android:textAlignment="center"
-        android:layout_marginTop="100dp"
-        android:textSize="40sp"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

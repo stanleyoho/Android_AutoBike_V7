@@ -1,4 +1,4 @@
-package autobike.stanley.idv.android_autobike_v7.tab.SellBike;
+package autobike.stanley.idv.android_autobike_v7.tab.sellBike;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,8 +18,6 @@ import java.util.List;
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Motor;
-import autobike.stanley.idv.android_autobike_v7.tab.rentbike.MotorGetAllTask;
-import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment;
 
 public class Tab_SellBike_Fragment extends Fragment {
 

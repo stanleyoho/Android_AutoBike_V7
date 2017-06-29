@@ -1,10 +1,17 @@
 package autobike.stanley.idv.android_autobike_v7.welcome;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.login.LoginActivity;
@@ -28,4 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
     };
+
+
 }
+

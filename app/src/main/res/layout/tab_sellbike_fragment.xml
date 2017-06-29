@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="0dp"
     android:background="#f6ca31"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.SellBike.Tab_SellBike_Fragment">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.sellBike.Tab_SellBike_Fragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSellMotor"

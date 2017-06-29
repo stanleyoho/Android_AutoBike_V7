@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f6ca31"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.TabBoardMessage">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.boardmessage.TabBoardMessage">
 
     <TextView
         android:layout_width="match_parent"

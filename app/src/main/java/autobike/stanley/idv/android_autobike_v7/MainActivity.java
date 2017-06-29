@@ -1,33 +1,26 @@
 package autobike.stanley.idv.android_autobike_v7;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Sell_List;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Setting;
-import autobike.stanley.idv.android_autobike_v7.tab.TabBoardMessage;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.TabBoardMessage;
 import autobike.stanley.idv.android_autobike_v7.tab.TabLocation;
-import autobike.stanley.idv.android_autobike_v7.tab.TabNews;
+import autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment;
-import autobike.stanley.idv.android_autobike_v7.tab.SellBike.Tab_SellBike_Fragment;
+import autobike.stanley.idv.android_autobike_v7.tab.sellBike.Tab_SellBike_Fragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -36,7 +29,6 @@ public class MainActivity extends FragmentActivity {
     private static final String TAB_3_TAG = "tab_3";
     private static final String TAB_4_TAG = "tab_4";
     private static final String TAB_5_TAG = "tab_5";
-    private static final int REQ_PERMISSIONS = 0;
 
     private DrawerLayout drawerLayout;
     private ImageView ivMenu;
@@ -62,7 +54,6 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
-        askPermissions();
         initDrawer();
         makeTabs();
     }
@@ -92,7 +83,7 @@ public class MainActivity extends FragmentActivity {
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_3_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.newspaper))
-                ,TabNews.class, null);
+                ,Tab_News_Fragment.class, null);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_4_TAG)
@@ -143,27 +134,6 @@ public class MainActivity extends FragmentActivity {
                 return true;
             }
         });
-    }
-
-    private void askPermissions() {
-        String[] permissions = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        };
-
-        Set<String> permissionsRequest = new HashSet<>();
-        for (String permission : permissions) {
-            int result = ContextCompat.checkSelfPermission(this, permission);
-            if (result != PackageManager.PERMISSION_GRANTED) {
-                permissionsRequest.add(permission);
-            }
-        }
-
-        if (!permissionsRequest.isEmpty()) {
-            ActivityCompat.requestPermissions(this,
-                    permissionsRequest.toArray(new String[permissionsRequest.size()]),
-                    REQ_PERMISSIONS);
-        }
     }
 
     private void switchFragment(Fragment fragment) {
