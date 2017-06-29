@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,10 +18,14 @@ import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMesGetAllTask;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessage;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_Fragment;
 
 public class Tab_News_Fragment extends Fragment {
 
     private final static String TAG = "NewsFragment";
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvNews;
 
     @Nullable
@@ -29,12 +34,26 @@ public class Tab_News_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab_news_fragment, container, false);
         rvNews = (RecyclerView) view.findViewById(R.id.rvNews);
         rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeRefreshLayout =
+                (SwipeRefreshLayout) view.findViewById(R.id.newsswipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showAllNews();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        showAllNews();
+    }
+
+    private void showAllNews() {
         if (Common.networkConnected(getActivity())) {
             String url = Common.URL + "NewsServlet";
             List<News> newsList = null;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +23,7 @@ import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Motor;
 public class Tab_SellBike_Fragment extends Fragment {
 
     private final static String TAG = "SellBikeFragment";
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvSellMotor;
 
     @Nullable
@@ -30,12 +32,26 @@ public class Tab_SellBike_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab_sellbike_fragment, container, false);
         rvSellMotor = (RecyclerView) view.findViewById(R.id.rvSellMotor);
         rvSellMotor.setLayoutManager(new LinearLayoutManager(getActivity()));
+        swipeRefreshLayout =
+                (SwipeRefreshLayout) view.findViewById(R.id.sellBikeswipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                showAllSellBike();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        showAllSellBike();
+    }
+
+    private void showAllSellBike(){
         if (Common.networkConnected(getActivity())) {
             String url = Common.URL + "MotorServlet";
             List<Motor> motorList = null;

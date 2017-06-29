@@ -16,7 +16,7 @@ import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Dat
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Sell_List;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Setting;
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.TabBoardMessage;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_Fragment;
 import autobike.stanley.idv.android_autobike_v7.tab.TabLocation;
 import autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment;
@@ -88,7 +88,7 @@ public class MainActivity extends FragmentActivity {
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_4_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.write))
-                ,TabBoardMessage.class,null);
+                ,Tab_BoardMessage_Fragment.class,null);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_5_TAG)

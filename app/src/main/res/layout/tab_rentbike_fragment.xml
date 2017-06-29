@@ -9,10 +9,18 @@
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvMotor"
-        android:layout_margin="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/rentBikeswipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMotor"
+            android:layout_margin="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

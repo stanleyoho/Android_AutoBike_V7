@@ -9,10 +9,19 @@
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvNews"
-        android:layout_margin="0dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/newsswipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNews"
+            android:layout_margin="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>
