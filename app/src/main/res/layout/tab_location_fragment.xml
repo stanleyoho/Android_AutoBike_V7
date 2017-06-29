@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f6ca31"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.TabLocation">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.location.Tab_Location_Fragment"
+    >
 
-    <TextView
+    <fragment
+        android:id="@+id/fragmentformap"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="tab1"
-        android:textAlignment="center"
-        android:layout_marginTop="100dp"
-        android:textSize="40sp"/>
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
