@@ -27,7 +27,7 @@ import autobike.stanley.idv.android_autobike_v7.tab.TabBoardMessage;
 import autobike.stanley.idv.android_autobike_v7.tab.TabLocation;
 import autobike.stanley.idv.android_autobike_v7.tab.TabNews;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment;
-import autobike.stanley.idv.android_autobike_v7.tab.TabSellBike;
+import autobike.stanley.idv.android_autobike_v7.tab.SellBike.Tab_SellBike_Fragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -87,7 +87,7 @@ public class MainActivity extends FragmentActivity {
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_2_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.shoppingcart))
-                ,TabSellBike.class,null);
+                ,Tab_SellBike_Fragment.class,null);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_3_TAG)

@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="0dp"
     android:background="#f6ca31"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.TabSellBike">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.SellBike.Tab_SellBike_Fragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSellMotor"
+        android:layout_margin="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tab2"
-        android:layout_marginTop="100dp"
-        android:textAlignment="center"
-        android:textSize="40sp"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

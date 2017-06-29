@@ -30,7 +30,7 @@
         <activity android:name=".navigationlayout.Navi_IDCheck" />
         <activity android:name=".navigationlayout.Navi_Setting" />
         <activity android:name=".tab.rentbike.Tab_RentBike_Fragment" />
-        <activity android:name=".tab.TabSellBike" />
+        <activity android:name=".tab.SellBike.Tab_SellBike_Fragment" />
         <activity android:name=".tab.TabNews" />
         <activity android:name=".tab.TabBoardMessage" />
         <activity android:name=".tab.TabLocation"></activity>

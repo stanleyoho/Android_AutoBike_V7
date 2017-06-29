@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="#fffaaa">
 
     <ImageView
-        android:id="@+id/ivRentImage"
+        android:id="@+id/ivSellMotorImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/android6_notext"/>
     <TextView
-        android:id="@+id/tvMotoTitle"
+        android:id="@+id/tvSellMotorTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
@@ -21,15 +21,14 @@
         android:textColor="#330033"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/ivRentImage"
+        android:layout_alignTop="@+id/ivSellMotorImage"
+        android:layout_toRightOf="@+id/ivSellMotorImage"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/ivRentImage"
-        android:layout_toEndOf="@+id/ivRentImage" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/tvMotoDetail"
+        android:id="@+id/tvSellMotorDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -37,10 +36,11 @@
         android:text="detail"
         android:textColor="#000044"
         android:textSize="16sp"
+        android:layout_below="@+id/tvSellMotorTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/tvMotoTitle"
-        android:layout_toRightOf="@+id/ivRentImage"
-        android:layout_toEndOf="@+id/ivRentImage"
-        android:layout_alignBottom="@+id/ivRentImage" />
-
+        android:layout_toRightOf="@+id/ivSellMotorImage"
+        android:layout_toEndOf="@+id/ivSellMotorImage"
+        android:layout_alignBottom="@+id/ivSellMotorImage" />
 </RelativeLayout>
