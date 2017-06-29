@@ -23,7 +23,7 @@ public class Tab_RentBike_Fragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private final static String TAG = "MotorFragment";
-    private RecyclerView rvMotor;
+    private RecyclerView rvMotor;//test
 
     @Nullable
     @Override
