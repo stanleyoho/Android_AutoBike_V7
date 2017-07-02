@@ -1,16 +1,26 @@
 package autobike.stanley.idv.android_autobike_v7;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
@@ -29,9 +39,10 @@ public class MainActivity extends FragmentActivity {
     private static final String TAB_3_TAG = "tab_3";
     private static final String TAB_4_TAG = "tab_4";
     private static final String TAB_5_TAG = "tab_5";
-
+    private static final int REQ_PERMISSIONS = 0;
     private DrawerLayout drawerLayout;
     private ImageView ivMenu;
+
 
 
     @Override
@@ -39,7 +50,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ivMenu = (ImageView)findViewById(R.id.iv_menu);
-
+        askPermissions();
         //add listrner for navigationview
         ivMenu.setOnClickListener(new View.OnClickListener() {  //set onclick listrner to show navigationview
             @Override
@@ -94,7 +105,6 @@ public class MainActivity extends FragmentActivity {
         mTabHost.addTab(mTabHost.newTabSpec(TAB_5_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.location))
                 ,Tab_Location_Fragment.class,null);
-
     }
 
 
@@ -142,5 +152,26 @@ public class MainActivity extends FragmentActivity {
                 fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void askPermissions(){
+        String[] permissions = {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        };
+
+        Set<String> permissionsRequest = new HashSet<>();
+        for (String permission : permissions) {
+            int result = ContextCompat.checkSelfPermission(this, permission);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                permissionsRequest.add(permission);
+            }
+        }
+
+        if (!permissionsRequest.isEmpty()) {
+            ActivityCompat.requestPermissions(this,
+                    permissionsRequest.toArray(new String[permissionsRequest.size()]),
+                    REQ_PERMISSIONS);
+        }
     }
 }
