@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,12 +26,14 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment;
 
 
 public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallback{
@@ -85,13 +90,16 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
         CameraUpdate cameraUpdate = CameraUpdateFactory
                 .newCameraPosition(cameraPosition);
         map.animateCamera(cameraUpdate);
-        for(autobike.stanley.idv.android_autobike_v7.tab.location.Location loc : this.locationList){
-            map.addMarker(new MarkerOptions()
-                    .position(new LatLng(loc.getLon(),loc.getLat()))
-                    .title(loc.getLocname())
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikeformapred)));
-        }
+        //用FOR把DB抓下的物件每個都上MARK
+        addMarkersToMap(locationList , map);
 
+
+        //換標記樣式
+        map.setInfoWindowAdapter(new MyInfoWindowAdapter());
+
+        MyMarkerListener myMarkerListener = new MyMarkerListener();
+        map.setOnMarkerClickListener(myMarkerListener);
+        map.setOnInfoWindowClickListener(myMarkerListener);
     }
 
     private void showAllRentBike(){
@@ -119,4 +127,101 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
         }
     }
 
+    private class MyMarkerListener implements GoogleMap.OnMarkerClickListener,
+            GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMarkerDragListener {
+        @Override
+        public boolean onMarkerClick(Marker marker) {
+            Toast.makeText(getContext(),marker.getTitle(),Toast.LENGTH_SHORT);
+            return false;
+        }
+
+        @Override
+        public void onInfoWindowClick(Marker marker) {
+            Toast.makeText(getContext(),marker.getTitle(),Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        public void onMarkerDragStart(Marker marker) {
+
+        }
+
+        @Override
+        public void onMarkerDragEnd(Marker marker) {
+
+        }
+
+        @Override
+        public void onMarkerDrag(Marker marker) {
+
+        }
+    }
+
+    private class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+        private final View infoWindow;
+
+        MyInfoWindowAdapter() {
+            infoWindow = View.inflate(getActivity(), R.layout.tab_location_info_window, null);
+        }
+        @Override
+        public View getInfoWindow(Marker marker) {
+            int logoId;
+            if ((marker.getTitle()).equals("台北車站")) {
+                logoId = R.drawable.megaphone;
+            } else if ((marker.getTitle()).equals("總部")) {
+                logoId = R.drawable.megaphone;
+            } else if ((marker.getTitle()).equals("板橋車站")) {
+                logoId = R.drawable.megaphone;
+            }else if ((marker.getTitle()).equals("臺中車站")) {
+                logoId = R.drawable.megaphone;
+            }else if ((marker.getTitle()).equals("台南車站")) {
+                logoId = R.drawable.megaphone;
+            }else if ((marker.getTitle()).equals("高雄車站")) {
+                logoId = R.drawable.megaphone;
+            }else{
+                logoId = 0;
+            }
+
+            ImageView ivLogo = ((ImageView) infoWindow
+                    .findViewById(R.id.ivLogo));
+            ivLogo.setImageResource(logoId);
+
+            String title = marker.getTitle();
+            TextView tvTitle = ((TextView) infoWindow
+                    .findViewById(R.id.tvTitle));
+            tvTitle.setText(title);
+
+            String snippet = marker.getSnippet();
+            TextView tvSnippet = ((TextView) infoWindow
+                    .findViewById(R.id.tvSnippet));
+            tvSnippet.setText(snippet);
+
+            return infoWindow;
+
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+    }
+
+    public void onClearMapClick(View view) {
+        map.clear();
+    }
+
+    public void onResetMapClick(View view) {
+        map.clear();
+        addMarkersToMap(locationList,map);
+    }
+
+    private void addMarkersToMap(List<autobike.stanley.idv.android_autobike_v7.tab.location.Location> loc , GoogleMap map) {
+        for (autobike.stanley.idv.android_autobike_v7.tab.location.Location locccc : loc) {
+            map.addMarker(new MarkerOptions()
+                    .position(new LatLng(locccc.getLon(), locccc.getLat()))
+                    .title(locccc.getLocname())
+                    .snippet(locccc.getAddr())
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikeformapred)));
+        }
+
+    }
 }
