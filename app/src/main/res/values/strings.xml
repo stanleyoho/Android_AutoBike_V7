@@ -54,4 +54,8 @@
     <string name="text_No">No</string>
     <string name="text_Motor">Motor</string>
     <string name="msg_NoMotorFound">no motor found</string>
+    <string name="LoginTitle">會員登入</string>
+    <string name="account">Account</string>
+    <string name="password">Password</string>
+    <string name="Login_normal">登入</string>
 </resources>

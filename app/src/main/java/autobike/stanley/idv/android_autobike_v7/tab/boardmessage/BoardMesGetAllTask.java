@@ -41,8 +41,7 @@ public class BoardMesGetAllTask  extends AsyncTask<Object, Integer, List<BoardMe
         }
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<BoardMessage>>() {
-        }.getType();
+        Type listType = new TypeToken<List<BoardMessage>>() { }.getType();
         return gson.fromJson(jsonIn, listType);
     }
 
