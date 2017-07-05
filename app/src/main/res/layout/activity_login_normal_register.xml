@@ -1,9 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5c927"
     tools:context="autobike.stanley.idv.android_autobike_v7.login.LoginNormalRegisterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registertitle"
+        android:id="@+id/tvRegisterTitle"
+        android:layout_marginTop="87dp"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:hint="@string/account"
+        android:id="@+id/etRegisterAccount"
+        android:inputType="text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxLines="1"
+        android:layout_below="@+id/tvRegisterTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:id="@+id/etRegisterPassword"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:layout_below="@+id/etRegisterAccount"
+        android:layout_alignLeft="@+id/etPasswordRepeat"
+        android:layout_alignStart="@+id/etPasswordRepeat" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/check_password_again"
+        android:id="@+id/etPasswordRepeat"
+        android:inputType="textPassword"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:maxLines="1"
+        android:layout_below="@+id/etRegisterPassword"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registerbutton"
+        android:id="@+id/btRegisternormal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/etRegisterPhoneNumber"
+        android:layout_alignEnd="@+id/etRegisterPhoneNumber" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:hint="@string/ID"
+        android:id="@+id/etRegisterID"
+        android:layout_below="@+id/etPasswordRepeat"
+        android:layout_alignLeft="@+id/etPasswordRepeat"
+        android:layout_alignStart="@+id/etPasswordRepeat"
+        android:layout_alignRight="@+id/etPasswordRepeat"
+        android:layout_alignEnd="@+id/etPasswordRepeat" />
+
+    <TextView
+        android:id="@+id/tvSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sex"
+        android:layout_gravity="center_vertical"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/etRegisterID"
+        android:layout_alignLeft="@+id/etRegisterID"
+        android:layout_alignStart="@+id/etRegisterID" />
+
+    <RadioGroup
+        android:id="@+id/rgSexGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/etRegisterID"
+        android:layout_toRightOf="@+id/tvSex"
+        android:layout_toEndOf="@+id/tvSex"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp">
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:checked="true"
+            android:text="@string/male" />
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:text="@string/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etRegisterMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/registerMail"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/rgSexGroup"
+        />
+    <EditText
+        android:id="@+id/etRegisterAddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Address"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/etRegisterMail"
+        />
+
+    <TextView
+        android:id="@+id/tvBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/birthday"
+        android:layout_gravity="center_vertical"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/etRegisterPhoneNumber"
+        android:layout_alignLeft="@+id/etRegisterPhoneNumber"
+        android:layout_alignStart="@+id/etRegisterPhoneNumber" />
+    <TextView
+        android:id="@+id/tvRegisterBirthdayResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/birthday"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        android:layout_below="@+id/etRegisterPhoneNumber"
+        android:layout_toRightOf="@+id/tvBirthday"
+        android:layout_toEndOf="@+id/tvBirthday" />
+    <ImageView
+        android:id="@+id/ivRegisterBirthdayCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar"
+        android:layout_alignBottom="@+id/tvRegisterBirthdayResult"
+        android:layout_toRightOf="@+id/tvSex"
+        android:layout_toEndOf="@+id/tvSex" />
+    <EditText
+        android:id="@+id/etRegisterPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/PhoneNumber"
+        android:layout_below="@+id/etRegisterAddr"
+        android:layout_alignRight="@+id/etRegisterAddr"
+        android:layout_alignEnd="@+id/etRegisterAddr"
+        android:layout_alignLeft="@+id/etRegisterAddr"
+        android:layout_alignStart="@+id/etRegisterAddr" />
+
+
+</RelativeLayout>

@@ -58,4 +58,16 @@
     <string name="account">Account</string>
     <string name="password">Password</string>
     <string name="Login_normal">登入</string>
+    <string name="registertitle">會員註冊</string>
+    <string name="registerbutton">註冊</string>
+    <string name="check_password_again">Check Password Again</string>
+    <string name="sex">性別 :</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="ID">ID</string>
+    <string name="registerMail">Mail</string>
+    <string name="Address">Address</string>
+    <string name="Birthday">Birthday</string>
+    <string name="birthday">生日:</string>
+    <string name="PhoneNumber">PhoneNumber</string>
 </resources>

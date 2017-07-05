@@ -30,6 +30,7 @@
         android:layout_marginTop="28dp"
         android:hint="@string/account"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/etAccount"
         android:inputType="text"
         android:maxLines="1"/>
@@ -42,6 +43,7 @@
         android:layout_alignParentStart="true"
         android:hint="@string/password"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="46dp"
         android:id="@+id/etPassword"
         android:inputType="textPassword"

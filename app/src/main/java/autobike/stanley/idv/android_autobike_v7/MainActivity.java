@@ -68,6 +68,7 @@ public class MainActivity extends FragmentActivity {
                 }else{
                     drawerLayout.closeDrawer(navigationView);
                 }
+
             }
         });
 

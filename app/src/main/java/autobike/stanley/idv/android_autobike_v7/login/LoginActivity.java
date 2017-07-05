@@ -20,7 +20,7 @@ import autobike.stanley.idv.android_autobike_v7.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView tvlater,tvNormalLogin;
+    private TextView tvlater,tvNormalLogin,tvNromalRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         tvlater = (TextView) findViewById(R.id.tvreg_later);
         tvNormalLogin = (TextView) findViewById(R.id.tvNormalLogin);
+        tvNromalRegister = (TextView) findViewById(R.id.tvNormalRegister);
         tvlater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +41,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this,LoginNormalActivity.class);
+                startActivity(intent);
+                LoginActivity.this.finish();
+            }
+        });
+        tvNromalRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,LoginNormalRegisterActivity.class);
                 startActivity(intent);
                 LoginActivity.this.finish();
             }

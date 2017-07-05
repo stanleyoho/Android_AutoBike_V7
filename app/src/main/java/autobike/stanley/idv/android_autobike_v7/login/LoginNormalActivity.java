@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class LoginNormalActivity extends AppCompatActivity {
     private static final String TAG = "LoginNormalActivity";
     private TextView tvAccount,tvPassword;
     private Button btCheckLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class LoginNormalActivity extends AppCompatActivity {
 
                     }
                 }
-
             }
         });
     }
