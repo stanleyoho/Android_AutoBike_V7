@@ -4,15 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aaddee"
+    android:background="#f5c927"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MemberPage"
+        android:text="@string/memdata_title"
+        android:textSize="40sp"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="40sp"/>
+        android:layout_marginTop="23dp"
+        android:id="@+id/tvmemdataTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+<TextView
+    android:id="@+id/memid"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/memdata_memname"
+    android:textSize="25sp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_below="@+id/tvmemdataTitle"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="25dp" />
+    <TextView
+        android:id="@+id/memAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/memdata_memaccount"
+        android:textSize="25sp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/memid"
+        android:layout_alignLeft="@+id/memid"
+        android:layout_alignStart="@+id/memid" />
 
-
+    <TextView
+        android:id="@+id/memdataMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp" 
+        android:text="@string/memdate_Mail"
+        android:layout_below="@+id/memAccount"
+        android:layout_alignLeft="@+id/memAccount"
+        android:layout_alignStart="@+id/memAccount"
+        android:layout_marginTop="17dp"
+        android:maxLines="1"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/memdata_Addr"
+        android:layout_marginTop="16dp"
+        android:maxLines="2"
+        android:id="@+id/memdataAddr"
+        android:layout_below="@+id/memdataMail"
+        android:layout_alignLeft="@+id/memdataMail"
+        android:layout_alignStart="@+id/memdataMail" />
+    <TextView
+        android:id="@+id/memdataSex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:text="@string/memdata_Sex"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/memdataAddr"
+        android:layout_alignLeft="@+id/memdataAddr"
+        android:layout_alignStart="@+id/memdataAddr" />
+    <TextView
+        android:id="@+id/memdataPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:text="@string/memdate_Phone"
+        android:layout_below="@+id/memdataSex"
+        android:layout_alignLeft="@+id/memdataSex"
+        android:layout_alignStart="@+id/memdataSex"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:id="@+id/memdataBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:maxLines="1"
+        android:text="@string/memdate_Birth"
+        android:layout_below="@+id/memdataPhone"
+        android:layout_alignLeft="@+id/memdataPhone"
+        android:layout_alignStart="@+id/memdataPhone"
+        android:layout_marginTop="15dp" />
 </RelativeLayout>

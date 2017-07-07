@@ -15,6 +15,7 @@ import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
+import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.tab.news.News;
 import autobike.stanley.idv.android_autobike_v7.tab.news.NewsGetAllTask;
@@ -28,7 +29,7 @@ public class LoginNormalActivity extends AppCompatActivity {
     private static final String TAG = "LoginNormalActivity";
     private TextView tvAccount,tvPassword;
     private Button btCheckLogin;
-
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,9 @@ public class LoginNormalActivity extends AppCompatActivity {
                 }else{
                     String checkResult = showCheckAccount();
                     if(checkResult.equals("allPass")){
+                        profile = new Profile(LoginNormalActivity.this);
+                        profile.setData("Account",account);
+                        Log.d("Account",account);
                         Intent intent = new Intent();
                         intent.setClass(LoginNormalActivity.this, MainActivity.class);
                         LoginNormalActivity.this.startActivity(intent);

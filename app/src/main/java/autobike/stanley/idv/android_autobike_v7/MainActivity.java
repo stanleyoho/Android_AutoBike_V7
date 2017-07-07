@@ -17,10 +17,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -74,11 +77,13 @@ public class MainActivity extends FragmentActivity {
 
         initDrawer();
         makeTabs();
+        Profile pf = new Profile(this);
+        Log.e("MainActivityProfile",pf.getData("Account"));
     }
 
     private void makeTabs() {
         //獲取TabHost控制元件
-        FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        final FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         //設定Tab頁面的顯示區域，帶入Context、FragmentManager、Container ID
         mTabHost.setup(this, getSupportFragmentManager(), R.id.container);
         /**
@@ -112,6 +117,15 @@ public class MainActivity extends FragmentActivity {
         mTabHost.addTab(mTabHost.newTabSpec(TAB_5_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.location))
                 ,Tab_Location_Fragment.class,null);
+
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                if(mTabHost.getCurrentTabTag().equals(TAB_5_TAG)){
+                    Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
 
@@ -157,7 +171,7 @@ public class MainActivity extends FragmentActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.add(R.id.container, fragment).addToBackStack(null);
         fragmentTransaction.commit();
     }
 

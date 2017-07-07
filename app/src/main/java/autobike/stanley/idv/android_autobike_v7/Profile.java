@@ -14,13 +14,13 @@ public class Profile {
         sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
     }
 
-    public void setMemVO(String mem_id){
+    public void setData(String key,String value){
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("mem_id", mem_id);
+        editor.putString(key, value);
         editor.apply();
     }
 
-    public String getMemId(){
-        return  sharedPreferences.getString("mem_id","");
+    public String getData(String key){
+        return  sharedPreferences.getString(key,"");
     }
 }

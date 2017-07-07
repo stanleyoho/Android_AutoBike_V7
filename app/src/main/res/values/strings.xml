@@ -70,4 +70,12 @@
     <string name="Birthday">Birthday</string>
     <string name="birthday">生日:</string>
     <string name="PhoneNumber">PhoneNumber</string>
+    <string name="memdata_title">會員資料</string>
+    <string name="memdata_memaccount">會員帳號 :</string>
+    <string name="memdata_memname">會員名稱 :</string>
+    <string name="memdate_Mail">會員信箱 :</string>
+    <string name="memdata_Addr">會員地址 :</string>
+    <string name="memdata_Sex">性別 :</string>
+    <string name="memdate_Phone">會員電話 :</string>
+    <string name="memdate_Birth">會員生日 :</string>
 </resources>

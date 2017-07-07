@@ -41,17 +41,19 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
     private final static String TAG = "LocationFragment";
     private GoogleMap map;
     private UiSettings uiSettings;
+    private SupportMapFragment supportFr;
     private LocationManager mLocManager;
     private List<autobike.stanley.idv.android_autobike_v7.tab.location.Location> locationList;
-
+    private View rootView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab_location_fragment, container, false);
 
-            SupportMapFragment supportFr = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.showMap);
-            supportFr.getMapAsync(this);
-            return rootView;
+        rootView = inflater.inflate(R.layout.tab_location_fragment, container, false);
+        supportFr = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.showMap);
+        supportFr.getMapAsync(this);
+
+        return rootView;
     }
 
     @Override
