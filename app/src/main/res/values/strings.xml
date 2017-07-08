@@ -78,4 +78,5 @@
     <string name="memdata_Sex">性別 :</string>
     <string name="memdate_Phone">會員電話 :</string>
     <string name="memdate_Birth">會員生日 :</string>
+    <string name="rentdetail">租賃清單</string>
 </resources>

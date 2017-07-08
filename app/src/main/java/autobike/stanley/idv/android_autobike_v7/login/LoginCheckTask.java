@@ -3,42 +3,49 @@ package autobike.stanley.idv.android_autobike_v7.login;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.RentOrder;
 
 /**
  * Created by Stanley_NB on 2017/7/3.
  */
 
-public class LoginCheckTask extends AsyncTask<Object, Integer, String> {
+public class LoginCheckTask extends AsyncTask<Object, Integer, Member> {
 
     private final static String TAG = "LoginCheckTask";
     private final static String ACTION = "checkAccount";
 
     @Override
-    protected String doInBackground(Object... params) {
+    protected Member doInBackground(Object... params) {
         String url = params[0].toString();
         String account = params[1].toString();
-        String password = params[2].toString();
         String jsonIn;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", ACTION);
         jsonObject.addProperty("account", account);
-        jsonObject.addProperty("password", password);
         try {
             jsonIn = getRemoteData(url, jsonObject.toString());
         } catch (IOException e) {
             Log.e(TAG, e.toString());
             return null;
         }
-        return jsonIn;
+        Gson gson = new Gson();
+        Type listType = new TypeToken<Member>() { }.getType();
+        return gson.fromJson(jsonIn, listType);
+
     }
 
     private String getRemoteData(String url, String jsonOut) throws IOException {

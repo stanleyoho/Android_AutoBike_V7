@@ -17,6 +17,7 @@ import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.GetMemTask;
 import autobike.stanley.idv.android_autobike_v7.tab.news.News;
 import autobike.stanley.idv.android_autobike_v7.tab.news.NewsGetAllTask;
 import autobike.stanley.idv.android_autobike_v7.tab.news.Tab_News_Fragment;
@@ -29,6 +30,7 @@ public class LoginNormalActivity extends AppCompatActivity {
     private static final String TAG = "LoginNormalActivity";
     private TextView tvAccount,tvPassword;
     private Button btCheckLogin;
+    private Member member;
     private Profile profile;
 
     @Override
@@ -42,29 +44,35 @@ public class LoginNormalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String account = tvAccount.getText().toString();
-                String password = tvAccount.getText().toString();
-                if(account.equals("") || password.equals("")){
-                    Toast.makeText(LoginNormalActivity.this,"Error",Toast.LENGTH_LONG).show();
-                }else{
-                    String checkResult = showCheckAccount();
-                    if(checkResult.equals("allPass")){
+                String password = tvPassword.getText().toString();
+
+                if (account.equals("") || password.equals("")){
+                    Toast.makeText(LoginNormalActivity.this,"Please insert id & password",Toast.LENGTH_LONG).show();
+                }else {
+                    member = showCheckAccount();
+                    if(member == null){
+                        Toast.makeText(LoginNormalActivity.this, "AccountNotExit", Toast.LENGTH_LONG).show();
+                    }else if (member.getAcc().equals(account) && member.getPwd().equals(password)) {
                         profile = new Profile(LoginNormalActivity.this);
-                        profile.setData("Account",account);
-                        Log.d("Account",account);
+                        profile.setData("filememno", member.getMemno());
+                        profile.setData("fileaccount", member.getAcc());
                         Intent intent = new Intent();
                         intent.setClass(LoginNormalActivity.this, MainActivity.class);
                         LoginNormalActivity.this.startActivity(intent);
                         LoginNormalActivity.this.finish();
-                    }else{
-
+                        Toast.makeText(LoginNormalActivity.this, "AllPass", Toast.LENGTH_LONG).show();
+                    } else if (member.getAcc().equals(account) && !member.getPwd().equals(password)) {
+                        Toast.makeText(LoginNormalActivity.this, "PasswordError", Toast.LENGTH_LONG).show();
                     }
                 }
+
+
             }
         });
     }
 
-    private String showCheckAccount() {
-        String jsonIn = null;
+    private Member showCheckAccount() {
+        Member member = null;
         if (Common.networkConnected(this)) {
             String url = Common.URL + "MemberServlet";
 
@@ -73,14 +81,14 @@ public class LoginNormalActivity extends AppCompatActivity {
             progressDialog.setMessage("Loading...");
             progressDialog.show();
             try {
-                jsonIn = new LoginCheckTask().execute(url, tvAccount.getText().toString(), tvPassword.getText().toString()).get();
+                member = new GetMemTask().execute(url, tvAccount.getText().toString()).get();
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
-            if (jsonIn == null || jsonIn.isEmpty()) {
+            if (member == null ) {
                 Common.showToast(this, R.string.msg_NoMotorFound);
             } else {
-                Toast.makeText(this, jsonIn, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Got MEMBER VO", Toast.LENGTH_SHORT).show();
             }
             progressDialog.cancel();
 
@@ -88,6 +96,6 @@ public class LoginNormalActivity extends AppCompatActivity {
             Common.showToast(this, R.string.msg_NoMotorFound);
         }
 
-        return jsonIn;
+        return member;
     }
 }

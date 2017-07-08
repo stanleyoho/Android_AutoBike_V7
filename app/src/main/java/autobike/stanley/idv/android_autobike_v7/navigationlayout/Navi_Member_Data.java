@@ -38,8 +38,8 @@ public class Navi_Member_Data extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         findViews();
         getMemData();
         memid.setText("姓名 : " +member.getMemname());
@@ -66,10 +66,11 @@ public class Navi_Member_Data extends Fragment {
         if (Common.networkConnected(getActivity())) {
             String url = Common.URL + "MemberServlet";
             Profile profile = new Profile(getActivity());
-            String memdata = profile.getData("Account");
-            Log.d("getMenber",memdata);
+            String memno = profile.getData("filememno");
+            String memaccount = profile.getData("fileaccount");
+
             try {
-                member = new GetMemTask().execute(url,memdata).get();
+                member = new GetMemTask().execute(url,memaccount).get();
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());

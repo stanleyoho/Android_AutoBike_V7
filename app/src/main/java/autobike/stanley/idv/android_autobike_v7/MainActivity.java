@@ -77,8 +77,6 @@ public class MainActivity extends FragmentActivity {
 
         initDrawer();
         makeTabs();
-        Profile pf = new Profile(this);
-        Log.e("MainActivityProfile",pf.getData("Account"));
     }
 
     private void makeTabs() {
