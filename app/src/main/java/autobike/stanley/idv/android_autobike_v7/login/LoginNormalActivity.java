@@ -56,6 +56,9 @@ public class LoginNormalActivity extends AppCompatActivity {
                         profile = new Profile(LoginNormalActivity.this);
                         profile.setData("filememno", member.getMemno());
                         profile.setData("fileaccount", member.getAcc());
+                        profile.setData("filename", member.getMemname());
+                        profile.setData("filemail", member.getMail());
+                        profile.setData("filestatus", member.getStatus());
                         Intent intent = new Intent();
                         intent.setClass(LoginNormalActivity.this, MainActivity.class);
                         LoginNormalActivity.this.startActivity(intent);

@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bbddee"
+    android:background="#f5c927"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Sell_List">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSelltList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SecondOrderPage"
-        android:textAlignment="center"
-        android:textSize="40sp"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" >
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

@@ -29,11 +29,13 @@ public class Navi_Rent_List extends Fragment {
     private static final String TAG = "RentListFragment";
     private RecyclerView rvRentRecycleView;
     private List<RentOrder> rentList;
+    private Profile profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.navi_rent_list, container, false);
+        profile = new Profile(getActivity());
         rvRentRecycleView = (RecyclerView) view.findViewById(R.id.rvRentList);
         rvRentRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
@@ -49,7 +51,6 @@ public class Navi_Rent_List extends Fragment {
         rentList = null;
         if (Common.networkConnected(getActivity())) {
             String url = Common.URL + "RentOrdServlet";
-            Profile profile = new Profile(getActivity());
             String account = profile.getData("fileaccount");
             String memno = profile.getData("fileid");
             List<RentOrder> rentOrdersList = null;
@@ -88,19 +89,28 @@ public class Navi_Rent_List extends Fragment {
         @Override
         public void onBindViewHolder(RentListRecyclerViewAdapter.MyViewHolder holder, int position) {
             RentOrder rentOrder = rentOrdersList.get(position);
-            holder.tvTitle.setText(rentOrder.getMotno());
-            holder.tvDetail.setText(rentOrder.getRlocno());
+            String url = Common.URL + "MotorModelServlet";
+            String ordno = rentOrder.getRentno();
+            int imageSize = 250;
+            new GetMotorModelImageByOrdNo(holder.imageView).execute(url, ordno, imageSize);
+            holder.tvRentNo.setText("訂單編號 :  " + rentOrder.getRentno());
+            holder.tvRentCarNo.setText("車輛編號 :  " + rentOrder.getMotno());
+            holder.tvRentLocStart.setText("取車地點 :  " + rentOrder.getSlocno());
+            holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
+            holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getRlocno());
         }
         class MyViewHolder extends RecyclerView.ViewHolder {
-//            ImageView imageView;
-            TextView tvTitle, tvDetail;
+            ImageView imageView;
+            TextView tvRentNo, tvRentCarNo,tvRentLocStart,tvRentLocBack,tvRentStatus;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-//                imageView = (ImageView) itemView.findViewById(R.id.ivBoardMesImage);
-                tvTitle = (TextView) itemView.findViewById(R.id.tvRentListTitle);
-                tvDetail = (TextView) itemView.findViewById(R.id.tvRentListDetail);
-
+                imageView = (ImageView) itemView.findViewById(R.id.ivRentListImage);
+                tvRentNo = (TextView) itemView.findViewById(R.id.tvRentListNo);
+                tvRentCarNo = (TextView) itemView.findViewById(R.id.tvRentListCarNo);
+                tvRentLocStart = (TextView) itemView.findViewById(R.id.tvRentListgetloc);
+                tvRentLocBack = (TextView) itemView.findViewById(R.id.tvRentListbackloc);
+                tvRentStatus = (TextView) itemView.findViewById(R.id.tvRentListstatus);
             }
         }
 

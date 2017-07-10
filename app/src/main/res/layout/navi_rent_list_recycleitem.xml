@@ -19,26 +19,56 @@
         android:layout_height="250px"
         android:src="@drawable/default_image" />
 
-    <TextView
-        android:id="@+id/tvRentListTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp" />
+        <TextView
+            android:id="@+id/tvRentListNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:text="訂單編號"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvRentListDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone No"
-        android:textColor="#555555"
-        android:layout_below="@+id/tvRentListTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        <TextView
+            android:id="@+id/tvRentListCarNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvRentListNo"
+            android:layout_alignStart="@+id/tvRentListNo"
+            android:layout_below="@+id/tvRentListNo"
+            android:text="車輛編號"
+            android:textColor="#555555" />
+
+        <TextView
+            android:id="@+id/tvRentListgetloc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvRentListCarNo"
+            android:layout_alignStart="@+id/tvRentListCarNo"
+            android:layout_below="@+id/tvRentListCarNo"
+            android:text="起車地點"
+            android:textColor="#555555" />
+
+        <TextView
+            android:id="@+id/tvRentListbackloc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="還車地點"
+            android:textColor="#555555"
+            android:layout_below="@+id/tvRentListgetloc"
+            android:layout_alignLeft="@+id/tvRentListgetloc"
+            android:layout_alignStart="@+id/tvRentListgetloc" />
+
+        <TextView
+            android:id="@+id/tvRentListstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="訂單狀態"
+            android:textColor="#555555"
+            android:layout_below="@+id/tvRentListbackloc"
+            android:layout_alignLeft="@+id/tvRentListbackloc"
+            android:layout_alignStart="@+id/tvRentListbackloc" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

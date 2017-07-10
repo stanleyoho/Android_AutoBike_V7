@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import java.util.HashSet;
 import java.util.Set;
 
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_IDCheck;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Sell_List;
@@ -130,6 +132,12 @@ public class MainActivity extends FragmentActivity {
     private void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View headerview = navigationView.getHeaderView(0);      //get navigationview's header
+        Profile profile =  new Profile(this);
+        TextView userID = (TextView) headerview.findViewById(R.id.tvUserName);
+        userID.setText(profile.getData("filename"));
+        TextView userMail = (TextView) headerview.findViewById(R.id.tvUserEmail);
+        userMail.setText(profile.getData("filemail"));
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -149,7 +157,7 @@ public class MainActivity extends FragmentActivity {
                         switchFragment(fragment);
                         break;
                     case R.id.idCheckStatus:
-                        fragment = new Navi_Sell_List();
+                        fragment = new Navi_IDCheck();
                         switchFragment(fragment);
                         break;
                     case R.id.settingPage:
