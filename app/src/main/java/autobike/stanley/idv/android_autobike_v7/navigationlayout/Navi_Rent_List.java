@@ -1,9 +1,8 @@
 package autobike.stanley.idv.android_autobike_v7.navigationlayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,15 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMesGetAllTask;
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessage;
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessageGetImageTask;
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_Fragment;
 
 public class Navi_Rent_List extends Fragment {
 
@@ -73,6 +69,7 @@ public class Navi_Rent_List extends Fragment {
 
         private LayoutInflater layoutInflater;
         private List<RentOrder> rentOrdersList;
+        RentOrder rentOrder;
 
         public RentListRecyclerViewAdapter(Context context,List<RentOrder> rentOrdersList){
             layoutInflater = LayoutInflater.from(context);
@@ -88,16 +85,17 @@ public class Navi_Rent_List extends Fragment {
 
         @Override
         public void onBindViewHolder(RentListRecyclerViewAdapter.MyViewHolder holder, int position) {
-            RentOrder rentOrder = rentOrdersList.get(position);
+            rentOrder = rentOrdersList.get(position);
             String url = Common.URL + "MotorModelServlet";
             String ordno = rentOrder.getRentno();
             int imageSize = 250;
-            new GetMotorModelImageByOrdNo(holder.imageView).execute(url, ordno, imageSize);
+            new GetMotorModelImageByRentNo(holder.imageView).execute(url, ordno, imageSize);
             holder.tvRentNo.setText("訂單編號 :  " + rentOrder.getRentno());
             holder.tvRentCarNo.setText("車輛編號 :  " + rentOrder.getMotno());
             holder.tvRentLocStart.setText("取車地點 :  " + rentOrder.getSlocno());
             holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
             holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getRlocno());
+
         }
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
@@ -111,6 +109,24 @@ public class Navi_Rent_List extends Fragment {
                 tvRentLocStart = (TextView) itemView.findViewById(R.id.tvRentListgetloc);
                 tvRentLocBack = (TextView) itemView.findViewById(R.id.tvRentListbackloc);
                 tvRentStatus = (TextView) itemView.findViewById(R.id.tvRentListstatus);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(),Navi_Rent_List_Detail_Page.class);
+                        Bundle bundle = new Bundle();
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        bundle.putString("rentno",rentOrder.getRentno());
+                        bundle.putString("getstart",rentOrder.getSlocno());
+                        bundle.putString("getback",rentOrder.getRlocno());
+                        bundle.putString("rentstatus",rentOrder.getStatus());
+                        bundle.putString("motortype","susu");
+                        bundle.putString("startdate",sdf.format(rentOrder.getStartdate()));
+                        bundle.putString("enddate",sdf.format(rentOrder.getEnddate()));
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                });
             }
         }
 

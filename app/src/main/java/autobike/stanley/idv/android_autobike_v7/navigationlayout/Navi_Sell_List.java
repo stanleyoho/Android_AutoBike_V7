@@ -88,7 +88,7 @@ public class Navi_Sell_List extends Fragment {
             String sellno = sellOrder.getSono();
             int imageSize = 250;
             new GetMotorModelImageBySellNo(holder.imageView).execute(url, sellno, imageSize);
-            holder.tvSellNo.setText("訂單編號 :  " + sellOrder.getSono());
+            holder.tvSellNo.setText("二手車訂單編號 :  " + sellOrder.getSono());
         }
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;

@@ -33,7 +33,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.LoginNormalActivity" />
-        <activity android:name=".login.LoginNormalRegisterActivity"></activity>
+        <activity android:name=".login.LoginNormalRegisterActivity" />
+        <activity android:name=".navigationlayout.Navi_Rent_List_Detail_Page"></activity>
     </application>
 
 </manifest>

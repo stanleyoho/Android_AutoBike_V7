@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5c927"
+    tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List_Detail_Page">
+
+
+    <ImageView
+        android:id="@+id/ivRentDetailImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/banciao" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="訂單編號 : "
+            android:textSize="20sp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvRentDetailRentNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="還車時間 : "
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="車輛型號 : "
+        android:textSize="20sp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvRentDetailMotorType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="車輛型號 : "
+        android:textSize="20sp" />
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取車時間 : "
+            android:textSize="20sp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvRentDetailStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="取車時間 : "
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="還車時間 : "
+        android:textSize="20sp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvRentDetailEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="還車時間 : "
+        android:textSize="20sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取車地點 : "
+        android:textSize="20sp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvRentDetailGetLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="取車地點 : "
+        android:textSize="20sp" />
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="還車地點 : "
+            android:textSize="20sp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/tvRentDetailBackLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="還車地點 :"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="付款狀態 : "
+        android:textSize="20sp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvRentDetailPayStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="付款狀態 :"
+        android:textSize="20sp" />
+</LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnRentDetailCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        android:text="Cancel" />
+
+</LinearLayout>

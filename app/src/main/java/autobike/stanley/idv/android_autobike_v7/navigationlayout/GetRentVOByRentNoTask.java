@@ -17,21 +17,22 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessage;
+/**
+ * Created by Stanley_NB on 2017/7/11.
+ */
 
-
-public class GetRentListTask extends AsyncTask<Object, Integer, List<RentOrder>> {
-    private final static String TAG = "RentOrderGetAllTask";
-    private final static String ACTION = "findbymemno";
+public class GetRentVOByRentNoTask extends AsyncTask<Object, Integer, RentOrder> {
+    private final static String TAG = "GetRentVOByRentNoTask";
+    private final static String ACTION = "findbyrentno";
 
     @Override
-    protected List<RentOrder> doInBackground(Object... params) {
+    protected RentOrder doInBackground(Object... params) {
         String url = params[0].toString();
-        String memno = params[1].toString();
+        String rentno = params[1].toString();
         String jsonIn;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", ACTION);
-        jsonObject.addProperty("memno", memno);
+        jsonObject.addProperty("rentno", rentno);
         try {
             jsonIn = getRemoteData(url, jsonObject.toString());
         } catch (IOException e) {
@@ -40,7 +41,7 @@ public class GetRentListTask extends AsyncTask<Object, Integer, List<RentOrder>>
         }
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<RentOrder>>() { }.getType();
+        Type listType = new TypeToken<RentOrder>() { }.getType();
         return gson.fromJson(jsonIn, listType);
     }
 

@@ -15,36 +15,39 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
-import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessage;
+import autobike.stanley.idv.android_autobike_v7.login.Member;
 
+/**
+ * Created by Stanley_NB on 2017/7/11.
+ */
 
-public class GetRentListTask extends AsyncTask<Object, Integer, List<RentOrder>> {
-    private final static String TAG = "RentOrderGetAllTask";
-    private final static String ACTION = "findbymemno";
+public class UpdateRentStatusTask  extends AsyncTask<Object, Integer, Void> {
+    private final static String TAG = "UpdateRentStatusTask";
+    private final static String ACTION = "updatebystatus";
 
     @Override
-    protected List<RentOrder> doInBackground(Object... params) {
+    protected Void doInBackground(Object... params) {
         String url = params[0].toString();
-        String memno = params[1].toString();
-        String jsonIn;
+        String rentno = params[1].toString();
+        String status = params[2].toString();
+//        String jsonIn;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", ACTION);
-        jsonObject.addProperty("memno", memno);
+        jsonObject.addProperty("rentno", rentno);
+        jsonObject.addProperty("status", status);
         try {
-            jsonIn = getRemoteData(url, jsonObject.toString());
+            getRemoteData(url, jsonObject.toString());
         } catch (IOException e) {
             Log.e(TAG, e.toString());
             return null;
         }
-
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<RentOrder>>() { }.getType();
-        return gson.fromJson(jsonIn, listType);
+//        Gson gson = new Gson();
+//        Type memType = new TypeToken<Member>() { }.getType();
+        return null;
     }
 
-    private String getRemoteData(String url, String jsonOut) throws IOException {
+    private void getRemoteData(String url, String jsonOut) throws IOException {
         StringBuilder jsonIn = new StringBuilder();
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setDoInput(true); // allow inputs
@@ -60,16 +63,17 @@ public class GetRentListTask extends AsyncTask<Object, Integer, List<RentOrder>>
         int responseCode = connection.getResponseCode();
 
         if (responseCode == 200) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                jsonIn.append(line);
-            }
+            Log.d(TAG, "Success " );
+//            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                jsonIn.append(line);
+//            }
         } else {
             Log.d(TAG, "response code: " + responseCode);
         }
         connection.disconnect();
-        Log.d(TAG, "jsonIn: " + jsonIn);
-        return jsonIn.toString();
+//        Log.d(TAG, "jsonIn: " + jsonIn);
+//        return jsonIn.toString();
     }
 }

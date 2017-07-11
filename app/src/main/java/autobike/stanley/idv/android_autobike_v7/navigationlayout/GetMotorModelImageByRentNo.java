@@ -17,12 +17,12 @@ import java.net.URL;
 
 import autobike.stanley.idv.android_autobike_v7.R;
 
-public class GetMotorModelImageByOrdNo extends AsyncTask<Object, Integer, Bitmap> {
-    private final static String TAG = "GetMotorModelImageByOrdNo";
+public class GetMotorModelImageByRentNo extends AsyncTask<Object, Integer, Bitmap> {
+    private final static String TAG = "GetMotorModelImageByRentNo";
     private final static String ACTION = "getImageByRentNo";
     private final WeakReference<ImageView> imageViewWeakReference;
 
-    GetMotorModelImageByOrdNo(ImageView imageView) {
+    GetMotorModelImageByRentNo(ImageView imageView) {
         this.imageViewWeakReference = new WeakReference<>(imageView);
     }
 

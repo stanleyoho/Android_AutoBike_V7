@@ -79,4 +79,6 @@
     <string name="memdate_Phone">會員電話 :</string>
     <string name="memdate_Birth">會員生日 :</string>
     <string name="rentdetail">租賃清單</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="cancelord">確定要取消訂單?</string>
 </resources>
