@@ -20,6 +20,8 @@ import java.util.concurrent.ExecutionException;
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByAccTask;
+import autobike.stanley.idv.android_autobike_v7.login.Member;
 
 public class Navi_Rent_List extends Fragment {
 
@@ -27,6 +29,7 @@ public class Navi_Rent_List extends Fragment {
     private RecyclerView rvRentRecycleView;
     private List<RentOrder> rentList;
     private Profile profile;
+    private Member member;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,12 +50,11 @@ public class Navi_Rent_List extends Fragment {
     public void showAllRentList(){
         rentList = null;
         if (Common.networkConnected(getActivity())) {
-            String url = Common.URL + "RentOrdServlet";
-            String account = profile.getData("fileaccount");
-            String memno = profile.getData("fileid");
+            String memno = profile.getData("Memno");
+
             List<RentOrder> rentOrdersList = null;
             try {
-                rentList = new GetRentListTask().execute(url,memno).get();
+                rentList = new GetRentListTask().execute(Common.URL_RentOrdServlet,memno).get();
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
@@ -105,7 +107,7 @@ public class Navi_Rent_List extends Fragment {
             holder.tvRentCarNo.setText("車輛型號 :  " + motorBrand );
             holder.tvRentLocStart.setText("取車地點 :  " + rentOrder.getSlocno());
             holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
-            holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getRlocno());
+            holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getStatus());
 
         }
         class MyViewHolder extends RecyclerView.ViewHolder {

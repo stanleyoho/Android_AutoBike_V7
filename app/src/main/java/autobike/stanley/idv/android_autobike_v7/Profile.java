@@ -2,6 +2,9 @@ package autobike.stanley.idv.android_autobike_v7;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+
+import autobike.stanley.idv.android_autobike_v7.login.Member;
 
 /**
  * Created by Stanley_NB on 2017/7/4.
@@ -23,4 +26,5 @@ public class Profile {
     public String getData(String key){
         return  sharedPreferences.getString(key,"");
     }
+
 }

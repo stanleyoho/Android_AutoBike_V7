@@ -1,4 +1,4 @@
-package autobike.stanley.idv.android_autobike_v7.login;
+package autobike.stanley.idv.android_autobike_v7.navigationlayout;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,37 +15,33 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-
-import autobike.stanley.idv.android_autobike_v7.navigationlayout.RentOrder;
 
 /**
- * Created by Stanley_NB on 2017/7/3.
+ * Created by Stanley_NB on 2017/7/14.
  */
 
-public class LoginCheckTask extends AsyncTask<Object, Integer, Member> {
-
-    private final static String TAG = "LoginCheckTask";
-    private final static String ACTION = "checkAccount";
+public class GetSellVOBySellNoTask extends AsyncTask<Object, Integer, SellOrder> {
+    private final static String TAG = "GetSellVOByRentNoTask";
+    private final static String ACTION = "findbysellno";
 
     @Override
-    protected Member doInBackground(Object... params) {
+    protected SellOrder doInBackground(Object... params) {
         String url = params[0].toString();
-        String account = params[1].toString();
+        String sellno = params[1].toString();
         String jsonIn;
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", ACTION);
-        jsonObject.addProperty("account", account);
+        jsonObject.addProperty("sellno", sellno);
         try {
             jsonIn = getRemoteData(url, jsonObject.toString());
         } catch (IOException e) {
             Log.e(TAG, e.toString());
             return null;
         }
-        Gson gson = new Gson();
-        Type listType = new TypeToken<Member>() { }.getType();
-        return gson.fromJson(jsonIn, listType);
 
+        Gson gson = new Gson();
+        Type listType = new TypeToken<SellOrder>() { }.getType();
+        return gson.fromJson(jsonIn, listType);
     }
 
     private String getRemoteData(String url, String jsonOut) throws IOException {
@@ -76,5 +72,4 @@ public class LoginCheckTask extends AsyncTask<Object, Integer, Member> {
         Log.d(TAG, "jsonIn: " + jsonIn);
         return jsonIn.toString();
     }
-
 }

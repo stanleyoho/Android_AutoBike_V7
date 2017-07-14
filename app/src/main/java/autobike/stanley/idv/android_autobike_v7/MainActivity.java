@@ -17,7 +17,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,12 +25,13 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
+import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByAccTask;
+import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByMemnoTask;
+import autobike.stanley.idv.android_autobike_v7.login.Member;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_IDCheck;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
@@ -53,6 +53,8 @@ public class MainActivity extends FragmentActivity {
     private static final int REQ_PERMISSIONS = 0;
     private DrawerLayout drawerLayout;
     private ImageView ivMenu;
+    private Profile profile;
+    private Member member;
 
 
 
@@ -133,44 +135,56 @@ public class MainActivity extends FragmentActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerview = navigationView.getHeaderView(0);      //get navigationview's header
-        Profile profile =  new Profile(this);
-        TextView userID = (TextView) headerview.findViewById(R.id.tvUserName);
-        userID.setText(profile.getData("filename"));
-        TextView userMail = (TextView) headerview.findViewById(R.id.tvUserEmail);
-        userMail.setText(profile.getData("filemail"));
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                drawerLayout.closeDrawers();
-                Fragment fragment;
-                switch (menuItem.getItemId()) {
-                    case R.id.memberData:
-                        fragment = new Navi_Member_Data();
-                        switchFragment(fragment);
-                        break;
-                    case R.id.rentList:
-                        fragment = new Navi_Rent_List();
-                        switchFragment(fragment);
-                        break;
-                    case R.id.secondList:
-                        fragment = new Navi_Sell_List();
-                        switchFragment(fragment);
-                        break;
-                    case R.id.idCheckStatus:
-                        fragment = new Navi_IDCheck();
-                        switchFragment(fragment);
-                        break;
-                    case R.id.settingPage:
-                        fragment = new Navi_Setting();
-                        switchFragment(fragment);
-                        break;
-                    default:
+        profile =  new Profile(this);
+        String tempMemno = profile.getData("Memno");
+        try {
+            //get membervo
+            member = new LoginGetMemberVOByMemnoTask().execute(Common.URL_MemServlet,tempMemno).get();
+            //findview by id
+            TextView userID = (TextView) headerview.findViewById(R.id.tvUserName);
+            TextView userMail = (TextView) headerview.findViewById(R.id.tvUserEmail);
+            //set id&mail
+            userID.setText(member.getMemname());
+            userMail.setText(member.getMail());
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    drawerLayout.closeDrawers();
+                    Fragment fragment;
+                    switch (menuItem.getItemId()) {
+                        case R.id.memberData:
+                            fragment = new Navi_Member_Data();
+                            switchFragment(fragment);
+                            break;
+                        case R.id.rentList:
+                            fragment = new Navi_Rent_List();
+                            switchFragment(fragment);
+                            break;
+                        case R.id.secondList:
+                            fragment = new Navi_Sell_List();
+                            switchFragment(fragment);
+                            break;
+                        case R.id.idCheckStatus:
+                            fragment = new Navi_IDCheck();
+                            switchFragment(fragment);
+                            break;
+                        case R.id.settingPage:
+                            fragment = new Navi_Setting();
+                            switchFragment(fragment);
+                            break;
+                        default:
 //                        initBody();
-                        break;
+                            break;
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void switchFragment(Fragment fragment) {

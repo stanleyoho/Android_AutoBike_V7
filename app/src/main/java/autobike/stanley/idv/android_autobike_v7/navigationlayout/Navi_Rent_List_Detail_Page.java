@@ -26,12 +26,12 @@ public class Navi_Rent_List_Detail_Page extends AppCompatActivity {
     private Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String url = Common.URL + "MotorModelServlet";
+//        String url = Common.URL + "MotorModelServlet";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navi_rent_list_detail_page);
         findViews();
         bundle =this.getIntent().getExtras();
-        new GetMotorModelImageByRentNo(imageView).execute(url,bundle.getString("rentno"),300);
+        new GetMotorModelImageByRentNo(imageView).execute(Common.URL_MotorModelServlet,bundle.getString("rentno"),300);
         tvrentno.setText(bundle.getString("rentno"));
         motortype.setText(bundle.getString("motortype"));
         rentstart.setText(bundle.getString("startdate"));
@@ -95,39 +95,4 @@ public class Navi_Rent_List_Detail_Page extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.btnRentDetailCancel);
     }
 
-    public static class AlertDialogFragment
-            extends DialogFragment implements DialogInterface.OnClickListener {
-        @NonNull
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.cancelord)
-                    .setIcon(R.drawable.ic_alert)
-                    .setMessage(R.string.cancelord)
-                    .setPositiveButton(R.string.text_Yes, this)
-                    .setNegativeButton(R.string.text_No, this)
-                    .create();
-        }
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            switch (which) {
-                case DialogInterface.BUTTON_POSITIVE:
-//                    try {
-//                        String url = Common.URL + "RentOrdServlet";
-//
-////                        new UpdateRentStatusTask().execute(url,bundle.getString("rentno"),"canceled").get();
-//
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    } catch (ExecutionException e) {
-//                        e.printStackTrace();
-//                    }
-                    break;
-                default:
-                    dialog.cancel();
-                    break;
-            }
-        }
-    }
 }

@@ -34,7 +34,9 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.LoginNormalActivity" />
         <activity android:name=".login.LoginNormalRegisterActivity" />
-        <activity android:name=".navigationlayout.Navi_Rent_List_Detail_Page"></activity>
+        <activity android:name=".navigationlayout.Navi_Rent_List_Detail_Page" />
+        <activity android:name=".navigationlayout.Navi_Change_Member_Data" />
+        <activity android:name=".navigationlayout.Navi_Sell_List_Detail_Page"></activity>
     </application>
 
 </manifest>

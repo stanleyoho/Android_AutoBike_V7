@@ -1,12 +1,13 @@
 package autobike.stanley.idv.android_autobike_v7.login;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by Stanley_NB on 2017/7/6.
  */
 
-public class Member {
+public class Member implements Serializable{
 
     private String memno;
     private String memname;
