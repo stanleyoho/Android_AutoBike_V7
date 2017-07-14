@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -15,6 +16,7 @@ import org.w3c.dom.Text;
 import java.util.HashSet;
 import java.util.Set;
 
+import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.R;
 

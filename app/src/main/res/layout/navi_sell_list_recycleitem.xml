@@ -9,28 +9,61 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="6dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/ivSellListImage"
-            android:layout_width="250px"
-            android:layout_height="250px"
-            android:src="@drawable/default_image" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvSellListNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
-            android:text="二手車編號"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/ivSellListImage"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/default_image" />
+
+</LinearLayout>
 
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="14dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二手車訂單編號 : "
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvSellListNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二手車編號"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+</LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

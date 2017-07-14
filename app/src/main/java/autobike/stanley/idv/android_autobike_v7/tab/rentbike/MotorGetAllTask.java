@@ -2,6 +2,7 @@ package autobike.stanley.idv.android_autobike_v7.tab.rentbike;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -16,6 +17,8 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+
+import autobike.stanley.idv.android_autobike_v7.MainActivity;
 
 /**
  * Created by Stanley_NB on 2017/6/22. ahahahahhakhjkhlkfsfsafsadfasfasf
@@ -52,24 +55,37 @@ public class MotorGetAllTask extends AsyncTask<Object, Integer, List<Motor>> {
         connection.setUseCaches(false); // do not use a cached copy
         connection.setRequestMethod("POST");
         connection.setRequestProperty("charset", "UTF-8");
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
-        bw.write(jsonOut);
-        Log.d(TAG, "jsonOut: " + jsonOut);
-        bw.close();
+        //set Timeout
+        connection.setConnectTimeout(5000);
+        connection.setReadTimeout(5000);
 
-        int responseCode = connection.getResponseCode();
+        //user try/catch to check timeout
+        try{
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
+            bw.write(jsonOut);
+            Log.d(TAG, "jsonOut: " + jsonOut);
+            bw.close();
 
-        if (responseCode == 200) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = br.readLine()) != null) {
-                jsonIn.append(line);
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == 200) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    jsonIn.append(line);
+                }
+            } else {
+                Log.d(TAG, "response code: " + responseCode);
             }
-        } else {
-            Log.d(TAG, "response code: " + responseCode);
+        }catch (Exception s){
+            // if timeout exit this application
+            connection.disconnect();
+            Log.d(TAG, "jsonIn: Timeout" + jsonIn);
+            System.exit(0);
+        }finally {
+            return jsonIn.toString();
         }
-        connection.disconnect();
-        Log.d(TAG, "jsonIn: " + jsonIn);
-        return jsonIn.toString();
+
     }
+
 }

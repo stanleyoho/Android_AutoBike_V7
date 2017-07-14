@@ -66,7 +66,7 @@ public class Navi_Rent_List_Detail_Page extends AppCompatActivity {
                                     try {
                                         new UpdateRentStatusTask().execute(url,bundle.getString("rentno"),"canceled").get();
                                         RentOrder rentordvo = (RentOrder) new GetRentVOByRentNoTask().execute(url,bundle.getString("rentno")).get();
-                                        rentstatus.setText("付款狀態 :"+rentordvo.getStatus());
+                                        rentstatus.setText(rentordvo.getStatus());
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     } catch (ExecutionException e) {

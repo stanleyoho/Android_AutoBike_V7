@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.Profile;
@@ -70,6 +71,7 @@ public class Navi_Rent_List extends Fragment {
         private LayoutInflater layoutInflater;
         private List<RentOrder> rentOrdersList;
         RentOrder rentOrder;
+        String motorBrand;
 
         public RentListRecyclerViewAdapter(Context context,List<RentOrder> rentOrdersList){
             layoutInflater = LayoutInflater.from(context);
@@ -88,10 +90,19 @@ public class Navi_Rent_List extends Fragment {
             rentOrder = rentOrdersList.get(position);
             String url = Common.URL + "MotorModelServlet";
             String ordno = rentOrder.getRentno();
-            int imageSize = 250;
+            int imageSize = 200;
             new GetMotorModelImageByRentNo(holder.imageView).execute(url, ordno, imageSize);
             holder.tvRentNo.setText("訂單編號 :  " + rentOrder.getRentno());
-            holder.tvRentCarNo.setText("車輛編號 :  " + rentOrder.getMotno());
+            url = Common.URL+"MotorServlet";
+            String tempMotono = rentOrder.getMotno();
+            try {
+                motorBrand = new GetMotorTypeByMotoNo().execute(url,tempMotono).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            holder.tvRentCarNo.setText("車輛型號 :  " + motorBrand );
             holder.tvRentLocStart.setText("取車地點 :  " + rentOrder.getSlocno());
             holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
             holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getRlocno());
@@ -120,7 +131,7 @@ public class Navi_Rent_List extends Fragment {
                         bundle.putString("getstart",rentOrder.getSlocno());
                         bundle.putString("getback",rentOrder.getRlocno());
                         bundle.putString("rentstatus",rentOrder.getStatus());
-                        bundle.putString("motortype","susu");
+                        bundle.putString("motortype",motorBrand);
                         bundle.putString("startdate",sdf.format(rentOrder.getStartdate()));
                         bundle.putString("enddate",sdf.format(rentOrder.getEnddate()));
                         intent.putExtras(bundle);
