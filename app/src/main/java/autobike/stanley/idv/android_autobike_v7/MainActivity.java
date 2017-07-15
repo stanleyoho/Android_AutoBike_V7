@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -29,6 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import autobike.stanley.idv.android_autobike_v7.login.LoginActivity;
 import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByAccTask;
 import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByMemnoTask;
 import autobike.stanley.idv.android_autobike_v7.login.Member;
@@ -123,9 +125,7 @@ public class MainActivity extends FragmentActivity {
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                if(mTabHost.getCurrentTabTag().equals(TAB_5_TAG)){
-                    Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
-                }
+                Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -143,9 +143,14 @@ public class MainActivity extends FragmentActivity {
             //findview by id
             TextView userID = (TextView) headerview.findViewById(R.id.tvUserName);
             TextView userMail = (TextView) headerview.findViewById(R.id.tvUserEmail);
-            //set id&mail
-            userID.setText(member.getMemname());
-            userMail.setText(member.getMail());
+            //set id&mail (use try/catch to show for guest)
+            try{
+                userID.setText(member.getMemname());
+                userMail.setText(member.getMail());
+            }catch(Exception e){
+                userID.setText("Guest");
+                userMail.setText("Guest");
+            }
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -154,24 +159,30 @@ public class MainActivity extends FragmentActivity {
                     switch (menuItem.getItemId()) {
                         case R.id.memberData:
                             fragment = new Navi_Member_Data();
-                            switchFragment(fragment);
+                            switchFragment(fragment,"mempage");
                             break;
                         case R.id.rentList:
                             fragment = new Navi_Rent_List();
-                            switchFragment(fragment);
+                            switchFragment(fragment,"rentpage");
                             break;
                         case R.id.secondList:
                             fragment = new Navi_Sell_List();
-                            switchFragment(fragment);
+                            switchFragment(fragment,"secpage");
                             break;
                         case R.id.idCheckStatus:
                             fragment = new Navi_IDCheck();
-                            switchFragment(fragment);
+                            switchFragment(fragment,"checkpage");
                             break;
                         case R.id.settingPage:
                             fragment = new Navi_Setting();
-                            switchFragment(fragment);
+                            switchFragment(fragment,"setting");
                             break;
+                        case R.id.logOut:
+                            Intent intent = new Intent();
+                            intent.setClass(MainActivity.this, LoginActivity.class);
+                            profile.clean();                //Clean all data when logout
+                            startActivity(intent);
+                            finish();                       //close activity
                         default:
 //                        initBody();
                             break;
@@ -187,11 +198,11 @@ public class MainActivity extends FragmentActivity {
 
     }
 
-    private void switchFragment(Fragment fragment) {
+    private void switchFragment(Fragment fragment,String tag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment).addToBackStack(null);
+        fragmentTransaction.add(R.id.container, fragment,tag);//.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

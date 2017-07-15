@@ -7,8 +7,7 @@
     android:background="#f5c927"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_IDCheck">
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

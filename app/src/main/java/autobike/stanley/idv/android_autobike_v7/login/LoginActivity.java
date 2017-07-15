@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -18,11 +19,13 @@ import java.util.Set;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
+import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextView tvlater,tvNormalLogin,tvNromalRegister;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
             }
         });
+        profile = new Profile(this);
+        Toast.makeText(this,"Memno : " + profile.getData("Memno"),Toast.LENGTH_SHORT).show();
     }
 
 }

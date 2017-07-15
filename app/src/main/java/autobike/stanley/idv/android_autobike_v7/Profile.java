@@ -23,6 +23,10 @@ public class Profile {
         editor.apply();
     }
 
+    public void clean(){
+        sharedPreferences.edit().clear().commit();
+    }
+
     public String getData(String key){
         return  sharedPreferences.getString(key,"");
     }
