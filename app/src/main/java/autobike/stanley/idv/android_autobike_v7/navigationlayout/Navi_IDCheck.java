@@ -57,6 +57,15 @@ public class Navi_IDCheck extends Fragment {
     public void onStart() {
         super.onStart();
         findViews();
+        profile = new Profile(getActivity());
+        /////check status
+//        String memStatus = profile.getData("Memstatus");
+//        if(memStatus.equals("confirmed")){
+//            ivid1.setVisibility(View.GONE);
+//            ivid2.setVisibility(View.GONE);
+//            ivid3.setVisibility(View.GONE);
+//        }
+        /////check status
         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
         Navi_IDCheck_CameraTool.askPermissions(getActivity(), permissions, Navi_IDCheck_CameraTool.PERMISSION_READ_EXTERNAL_STORAGE);
 
@@ -119,7 +128,7 @@ public class Navi_IDCheck extends Fragment {
             @Override
             public void onClick(View v) {
                 // change imageview to byte[]
-                profile = new Profile(getActivity());
+
                 String memno = profile.getData("Memno");
                 String image1 = Base64.encodeToString(changeImageViewToByte(ivid1), Base64.DEFAULT);
                 String image2 = Base64.encodeToString(changeImageViewToByte(ivid2), Base64.DEFAULT);

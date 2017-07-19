@@ -44,7 +44,8 @@ public class LoginNormalActivity extends AppCompatActivity {
                     }else if (member.getAcc().equals(account) && member.getPwd().equals(password)) { //All pass
                         profile = new Profile(LoginNormalActivity.this);
                         profile.setData("Memno", member.getMemno());
-//                        profile.setData("fileaccount", member.getAcc());
+                        profile.setData("Memacc", member.getAcc());
+                        profile.setData("Memstatus", member.getStatus());
 //                        profile.setData("filename", member.getMemname());
 //                        profile.setData("filemail", member.getMail());
 //                        profile.setData("filestatus", member.getStatus());

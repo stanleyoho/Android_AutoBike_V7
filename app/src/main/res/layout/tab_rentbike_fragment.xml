@@ -9,18 +9,100 @@
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/rentBikeswipeRefreshLayout"
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/mm101"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvMotor"
-            android:layout_margin="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="預約日期 : "/>
+        <TextView
+            android:id="@+id/tvdateresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text=" "/>
+        <ImageView
+            android:id="@+id/ivcalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar"/>
+        <TextView
+            android:id="@+id/tvtimeresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text=" "/>
+        <ImageView
+            android:id="@+id/ivtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clock"/>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
+    <LinearLayout
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="租車天數 : "/>
+    <Spinner
+        android:id="@+id/spDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown">
+
+    </Spinner>
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20sp"
+            android:text="廠牌 : "/>
+
+        <Spinner
+            android:id="@+id/spBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown">
+
+        </Spinner>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"/>
 </LinearLayout>

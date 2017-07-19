@@ -1,5 +1,6 @@
 package autobike.stanley.idv.android_autobike_v7.tab.rentbike;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Locale;
  * Created by Stanley_NB on 2017/6/22.
  */
 
-public class Motor {
+public class Motor implements Serializable{
     private String motno;
     private String modtype;
     private String plateno;

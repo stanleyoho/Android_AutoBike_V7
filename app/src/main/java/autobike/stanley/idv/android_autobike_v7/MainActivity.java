@@ -57,6 +57,7 @@ public class MainActivity extends FragmentActivity {
     private ImageView ivMenu;
     private Profile profile;
     private Member member;
+    private Bundle bundle;
 
 
 
@@ -64,6 +65,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bundle = new Bundle();
         ivMenu = (ImageView)findViewById(R.id.iv_menu);
         askPermissions();
         //add listrner for navigationview
@@ -100,36 +102,42 @@ public class MainActivity extends FragmentActivity {
         //LessonOneFragment class，無夾帶Bundle資訊。
         mTabHost.addTab(mTabHost.newTabSpec(TAB_1_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.bike))
-                ,Tab_RentBike_Fragment.class,null);
+                ,Tab_RentBike_Fragment.class,bundle);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_2_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.shoppingcart))
-                ,Tab_SellBike_Fragment.class,null);
+                ,Tab_SellBike_Fragment.class,bundle);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_3_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.newspaper))
-                ,Tab_News_Fragment.class, null);
+                ,Tab_News_Fragment.class, bundle);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_4_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.write))
-                ,Tab_BoardMessage_Fragment.class,null);
+                ,Tab_BoardMessage_Fragment.class,bundle);
 
         //同上方Tab設定，不同處為帶入參數的差異
         mTabHost.addTab(mTabHost.newTabSpec(TAB_5_TAG)
                         .setIndicator("",getResources().getDrawable(R.drawable.location))
-                ,Tab_Location_Fragment.class,null);
+                ,Tab_Location_Fragment.class,bundle);
 
-        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String tabId) {
-                Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
-            }
-        });
+//        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+//            @Override
+//            public void onTabChanged(String tabId) {
+//                Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        profile.clean();
+    }
 
     private void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

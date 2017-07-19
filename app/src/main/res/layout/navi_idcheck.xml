@@ -12,14 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="實名認證"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="實名認證"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"

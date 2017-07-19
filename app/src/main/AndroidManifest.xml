@@ -28,8 +28,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDVnMgEdHLGK-dvXG-9zr7ZGvZZ0FTW12M" />
@@ -47,7 +48,11 @@
         <activity android:name=".login.LoginNormalRegisterActivity" />
         <activity android:name=".navigationlayout.Navi_Rent_List_Detail_Page" />
         <activity android:name=".navigationlayout.Navi_Change_Member_Data" />
-        <activity android:name=".navigationlayout.Navi_Sell_List_Detail_Page"></activity>
+        <activity android:name=".navigationlayout.Navi_Sell_List_Detail_Page" />
+        <activity android:name=".tab.rentbike.Tab_RentBike_SearchResult" />
+        <activity android:name=".tab.rentbike.Tab_RentBike_Detail" />
+        <activity android:name=".tab.rentbike.Tab_RentBike_Detail_Confirm" />
+        <activity android:name=".tab.sellBike.Tab_SellBike_detail"></activity>
     </application>
 
 </manifest>

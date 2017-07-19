@@ -2,6 +2,7 @@ package autobike.stanley.idv.android_autobike_v7.tab.sellBike;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,24 +13,33 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.tab.rentbike.GetMotorModelImageByMotoType;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Motor;
+import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Detail;
+import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_SearchResult;
 
 public class Tab_SellBike_Fragment extends Fragment {
 
     private final static String TAG = "SellBikeFragment";
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvSellMotor;
+    private Bundle bundle;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_sellbike_fragment, container, false);
+        Log.d(TAG, "onCreateView: bundle:"+bundle);
+        if(bundle == null){
+            Log.d(TAG, "onCreateView: bundle is null");
+        }
         rvSellMotor = (RecyclerView) view.findViewById(R.id.rvSellMotor);
         rvSellMotor.setLayoutManager(new LinearLayoutManager(getActivity()));
         swipeRefreshLayout =
@@ -88,10 +98,12 @@ public class Tab_SellBike_Fragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            ImageView ivImage;
             TextView sellMotorTitle, sellMotorDetail;
 
             public ViewHolder(View itemView) {
                 super(itemView);
+                ivImage = (ImageView)itemView.findViewById(R.id.ivSellMotorImage) ;
                 sellMotorTitle = (TextView) itemView.findViewById(R.id.tvSellMotorTitle);
                 sellMotorDetail = (TextView) itemView.findViewById(R.id.tvSellMotorDetail);
             }
@@ -109,29 +121,25 @@ public class Tab_SellBike_Fragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(final Tab_SellBike_Fragment.SellMotorRecyclerViewAdapter.ViewHolder viewHolder, int position) {
-            Motor motor = motorList.get(position);
+        public void onBindViewHolder(final Tab_SellBike_Fragment.SellMotorRecyclerViewAdapter.ViewHolder viewHolder, final int position) {
+             Motor motor = motorList.get(position);
+            String url = Common.URL + "MotorModelServlet";
+            String mototype = motor.getModtype();
+            int imageSize = 200;
+            new GetMotorModelImageByMotoType(viewHolder.ivImage).execute(url, mototype, imageSize);
             viewHolder.sellMotorTitle.setText("機車型號 : " + motor.getModtype());
             viewHolder.sellMotorDetail.setText("車牌號碼: " + motor.getPlateno() + "\r\n" + "機車狀態: " + motor.getStatus() + "\r\n" + "機車里程數 : " + motor.getMile() +  "\r\n" + "機車所在地 : " +motor.getLocno());
-//            viewHolder.motorNewsDetail.setVisibility(
-//                    motorExpanded[position] ? View.VISIBLE : View.GONE);
-//            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    expand(viewHolder.getAdapterPosition());
-//                }
-//            });
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bundle = new Bundle();
+                    bundle.putSerializable("sellmotor",motorList.get(position));
+                    Intent intent = new Intent();
+                    intent.putExtras(bundle);
+                    intent.setClass(getActivity(),Tab_SellBike_detail.class);
+                    startActivity(intent);
+                }
+            });
         }
-
-//        private void expand(int position) {
-//             被點擊的資料列才會彈出內容，其他資料列的內容會自動縮起來
-//             for (int i=0; i<newsExpanded.length; i++) {
-//             newsExpanded[i] = false;
-//             }
-//             newsExpanded[position] = true;/////
-//
-//            motorExpanded[position] = !motorExpanded[position];
-//            notifyDataSetChanged();
-//        }
     }
 }

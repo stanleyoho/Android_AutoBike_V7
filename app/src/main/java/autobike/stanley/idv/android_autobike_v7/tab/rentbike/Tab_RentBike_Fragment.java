@@ -1,137 +1,140 @@
 package autobike.stanley.idv.android_autobike_v7.tab.rentbike;
 
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.annotation.TargetApi;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import autobike.stanley.idv.android_autobike_v7.Common;
+import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.login.LoginNormalRegisterActivity;
 
 public class Tab_RentBike_Fragment extends Fragment {
 
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private final static String TAG = "MotorFragment";
-    private RecyclerView rvMotor;//test
+    ViewPager viewpager;
+    ImageView ivCalendar,ivTime;
+    TextView tvdateResult,tvtimeResult;
+    Spinner spDays,spBrand,spCC;
+    View view;
+    Button  btnSearch;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_rentbike_fragment, container, false);
-        rvMotor = (RecyclerView) view.findViewById(R.id.rvMotor);
-        rvMotor.setLayoutManager(new LinearLayoutManager(getActivity()));
-        swipeRefreshLayout =
-                (SwipeRefreshLayout) view.findViewById(R.id.rentBikeswipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                showAllRentBike();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
+        view = inflater.inflate(R.layout.tab_rentbike_fragment, container, false);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        showAllRentBike();
+        String[] days = {"1", "2", "3", "4","5","6","7"};
+        String[] brand = {"----","Kawasaki","YAMAHA","Benelli","KTM","SYM","KYMCO","AEON","SUZUKI"};
+        btnSearch = (Button) view.findViewById(R.id.searchButton);
+        spDays = (Spinner)view.findViewById(R.id.spDays);
+        spDays.setSelection(0,true);
+        ArrayAdapter<String> adapterDays = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, days);
+        adapterDays.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDays.setAdapter(adapterDays);
+        spBrand = (Spinner)view.findViewById(R.id.spBrand);
+        ArrayAdapter<String> adapterBrand = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, brand);
+        adapterBrand.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spBrand.setAdapter(adapterBrand);
+        spBrand.setSelection(0,true);
+        tvdateResult = (TextView)view.findViewById(R.id.tvdateresult);
+        tvtimeResult = (TextView)view.findViewById(R.id.tvtimeresult);
+        final Calendar c = Calendar.getInstance();
+        int mYear, mMonth, mDay,mHour,mMinute;
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+        tvdateResult.setText(setDateFormat(mYear,mMonth,mDay));
+        tvtimeResult.setText(setTimeFormat(mHour,mMinute));
+        ivCalendar = (ImageView)view.findViewById(R.id.ivcalendar);
+        ivTime = (ImageView)view.findViewById(R.id.ivtime);
+        ivCalendar.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int mYear, mMonth, mDay;
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        String format = setDateFormat(year,month,day);
+                        tvdateResult.setText(format);}
+                }, mYear,mMonth, mDay).show();
+            }
+
+        });
+        ivTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                final int mHour,mMinute;
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour, int minute) {
+                        String timeFormat = setTimeFormat(mHour,mMinute);
+                        tvtimeResult.setText(timeFormat);
+                    }
+                }, mHour,mMinute,false).show();
+            }
+        });
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String brand = spBrand.getSelectedItem().toString();
+                Bundle bundle = new Bundle();
+                bundle.putString("brand",brand);
+                bundle.putString("Rentday",spDays.getSelectedItem().toString());
+                bundle.putString("Date",tvdateResult.getText().toString());
+                bundle.putString("Time",tvtimeResult.getText().toString());
+                Intent intent = new Intent();
+                intent.putExtras(bundle);
+                intent.setClass(getActivity(),Tab_RentBike_SearchResult.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void showAllRentBike(){
-        if (Common.networkConnected(getActivity())) {
-            String url = Common.URL + "MotorServlet";
-            List<Motor> motorList = null;
-
-            ProgressDialog progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage("Loading...");
-            progressDialog.show();
-            try {
-                motorList = new MotorGetAllTask().execute(url).get();
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            if (motorList == null || motorList.isEmpty()) {
-                Common.showToast(getActivity(), R.string.msg_NoMotorFound);
-            } else {
-                rvMotor.setAdapter(new Tab_RentBike_Fragment.MotorRecyclerViewAdapter(getActivity(), motorList));
-            }
-            progressDialog.cancel();
-
-        } else {
-            Common.showToast(getActivity(), R.string.msg_NoMotorFound);
-        }
+    private String setDateFormat(int year,int monthOfYear,int dayOfMonth){
+        return String.valueOf(year) + "-"
+                + String.format("%02d",monthOfYear + 1) + "-"
+                + String.format("%02d",dayOfMonth);
+    }
+    private String setTimeFormat(int hour,int minute){
+        return String.format("%02d",hour) + ":" + String.format("%02d",minute);
     }
 
-    private class MotorRecyclerViewAdapter extends RecyclerView.Adapter<Tab_RentBike_Fragment.MotorRecyclerViewAdapter.ViewHolder> {
-        private LayoutInflater layoutInflater;
-        private List<Motor> motorList;
-        private boolean[] motorExpanded;
-
-        public MotorRecyclerViewAdapter(Context context, List<Motor> motorList) {
-            layoutInflater = LayoutInflater.from(context);
-            this.motorList = motorList;
-            motorExpanded = new boolean[motorList.size()];
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            TextView motorNewsTitle, motorNewsDetail;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                motorNewsTitle = (TextView) itemView.findViewById(R.id.tvMotoTitle);
-                motorNewsDetail = (TextView) itemView.findViewById(R.id.tvMotoDetail);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return motorList.size();
-        }
-
-        @Override
-        public Tab_RentBike_Fragment.MotorRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = layoutInflater.inflate(R.layout.tab_rentbike_recycleitem, parent, false);
-            return new Tab_RentBike_Fragment.MotorRecyclerViewAdapter.ViewHolder(itemView);
-        }
-
-        @Override
-        public void onBindViewHolder(final Tab_RentBike_Fragment.MotorRecyclerViewAdapter.ViewHolder viewHolder, int position) {
-            Motor motor = motorList.get(position);
-            viewHolder.motorNewsTitle.setText("機車型號 : " + motor.getModtype());
-            viewHolder.motorNewsDetail.setText("車牌號碼: " + motor.getPlateno() + "\r\n" + "機車狀態: " + motor.getStatus() + "\r\n" + "機車里程數 : " + motor.getMile() +  "\r\n" + "機車所在地 : " +motor.getLocno());
-//            viewHolder.motorNewsDetail.setVisibility(
-//                    motorExpanded[position] ? View.VISIBLE : View.GONE);
-//            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    expand(viewHolder.getAdapterPosition());
-//                }
-//            });
-        }
-
-//        private void expand(int position) {
-//             被點擊的資料列才會彈出內容，其他資料列的內容會自動縮起來
-//             for (int i=0; i<newsExpanded.length; i++) {
-//             newsExpanded[i] = false;
-//             }
-//             newsExpanded[position] = true;/////
-//
-//            motorExpanded[position] = !motorExpanded[position];
-//            notifyDataSetChanged();
-//        }
-    }
 }

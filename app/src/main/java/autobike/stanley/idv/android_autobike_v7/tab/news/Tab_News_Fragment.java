@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -90,10 +91,12 @@ public class Tab_News_Fragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
+            ImageView ivimage;
             TextView NewsTitle, NewsDetail;
 
             public ViewHolder(View itemView) {
                 super(itemView);
+                ivimage = (ImageView)itemView.findViewById(R.id.ivNewsImage);
                 NewsTitle = (TextView) itemView.findViewById(R.id.tvNewsTitle);
                 NewsDetail = (TextView) itemView.findViewById(R.id.tvNewsDetail);
             }
@@ -113,6 +116,7 @@ public class Tab_News_Fragment extends Fragment {
         @Override
         public void onBindViewHolder(final Tab_News_Fragment.NewsRecyclerViewAdapter.ViewHolder viewHolder, int position) {
             News news = newsList.get(position);
+            new GetNewsImageTask(viewHolder.ivimage).execute(Common.URL_NewsServlet,news.getNewsno(),250);
             viewHolder.NewsTitle.setText("最新消息編號 : " + news.getNewsno());
             viewHolder.NewsDetail.setText("消息類別: " + news.getTitle() + "\r\n" + "消息內容: " + news.getCont() + "\r\n" );
 //            viewHolder.motorNewsDetail.setVisibility(

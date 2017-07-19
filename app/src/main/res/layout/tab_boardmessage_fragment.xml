@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/boardMesswipeRefreshLayout"
@@ -14,6 +13,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvBoardMes"
+            android:background="#f6ca31"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

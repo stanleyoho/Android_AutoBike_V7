@@ -3,6 +3,7 @@ package autobike.stanley.idv.android_autobike_v7.navigationlayout;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class Navi_Member_Data extends Fragment {
         findViews();
         Profile profile = new Profile(getActivity());
         String tempMemacc = profile.getData("Memacc");
+        Log.e("Memacc",tempMemacc);
         String tempUrl = Common.URL + "MemberServlet";
         try {
             member = new LoginGetMemberVOByAccTask().execute(tempUrl,tempMemacc).get();
