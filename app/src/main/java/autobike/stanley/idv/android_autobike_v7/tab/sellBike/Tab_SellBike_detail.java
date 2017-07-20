@@ -2,6 +2,7 @@ package autobike.stanley.idv.android_autobike_v7.tab.sellBike;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -82,10 +83,14 @@ public class Tab_SellBike_detail extends AppCompatActivity {
         btnsendsecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SellOrder sellOrder = new SellOrder();
-                sellOrder.setMemno(profile.getData("Memno"));
-                sellOrder.setMotorno(((Motor)bundle.getSerializable("sellmotor")).getMotno());
-                new AddSecOrdTask().execute(Common.URL_SecOrdServlet,sellOrder);
+//                SellOrder sellOrder = new SellOrder();
+//                sellOrder.setMemno(profile.getData("Memno"));
+//                sellOrder.setMotorno(((Motor)bundle.getSerializable("sellmotor")).getMotno());
+//                new AddSecOrdTask().execute(Common.URL_SecOrdServlet,sellOrder);
+                Intent intent = new Intent();
+                intent.setClass(Tab_SellBike_detail.this,tab_sell_bike_pay.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

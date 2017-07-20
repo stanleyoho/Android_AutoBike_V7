@@ -31,17 +31,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        tvlater = (TextView) findViewById(R.id.tvreg_later);
+//        tvlater = (TextView) findViewById(R.id.tvreg_later);
         tvNormalLogin = (TextView) findViewById(R.id.tvNormalLogin);
         tvNromalRegister = (TextView) findViewById(R.id.tvNormalRegister);
-        tvlater.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-                LoginActivity.this.finish();
-            }
-        });
+//        tvlater.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//                startActivity(intent);
+//                LoginActivity.this.finish();
+//            }
+//        });
         tvNormalLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

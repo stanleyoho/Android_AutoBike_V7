@@ -27,6 +27,7 @@ import java.util.Date;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
+import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 
 public class LoginNormalRegisterActivity extends AppCompatActivity {
@@ -39,11 +40,13 @@ public class LoginNormalRegisterActivity extends AppCompatActivity {
     private RadioButton rgSelected;
     private Member member;
     private Date result;
+    private Profile profile;
     private static final String TAG = "RegisterActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_normal_register);
+        profile = new Profile(this);
         findviews();
         ivRegisterBirthdayCalendar.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.N)
@@ -100,8 +103,11 @@ public class LoginNormalRegisterActivity extends AppCompatActivity {
                     member.setPwd(regPassword);
                     member.setSex(regSelectedText);
                     String result = registerAccount();
-                    if(result.equals("Insert_OK")){
+                    String[] resultArray = result.split(",");
+                    if(resultArray[0].equals("Insert_OK")){
                         Intent intent = new Intent();
+                        profile.setData("Memacc",member.getAcc());
+                        profile.setData("Memno",resultArray[1]);
                         intent.setClass(LoginNormalRegisterActivity.this, MainActivity.class);
                         LoginNormalRegisterActivity.this.startActivity(intent);
                         LoginNormalRegisterActivity.this.finish();

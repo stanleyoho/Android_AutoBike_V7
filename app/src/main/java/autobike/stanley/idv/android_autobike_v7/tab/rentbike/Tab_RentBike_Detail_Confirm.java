@@ -1,5 +1,6 @@
 package autobike.stanley.idv.android_autobike_v7.tab.rentbike;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,8 +72,14 @@ public class Tab_RentBike_Detail_Confirm extends AppCompatActivity {
                     try {
                        rentOrder.setStartdate(new Timestamp(sdf.parse(startFormat).getTime()));
                        rentOrder.setEnddate(new Timestamp(sdf.parse(endFormat).getTime()));
-                        new AddOrderTask().execute(Common.URL_RentOrdServlet,rentOrder,bundle.getString("hatitem")
-                        ,bundle.getString("handitem"),bundle.getString("shirtitem"),bundle.getString("v8item"));
+                        bundle.putSerializable("rentorder",rentOrder);
+                        Intent intent = new Intent();
+                        intent.putExtras(bundle);
+                        intent.setClass(Tab_RentBike_Detail_Confirm.this,Tab_RentBike_Pay.class);
+                        startActivity(intent);
+
+//                        new AddOrderTask().execute(Common.URL_RentOrdServlet,rentOrder,bundle.getString("hatitem")
+//                        ,bundle.getString("handitem"),bundle.getString("shirtitem"),bundle.getString("v8item"));
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

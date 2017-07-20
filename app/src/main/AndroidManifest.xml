@@ -52,7 +52,9 @@
         <activity android:name=".tab.rentbike.Tab_RentBike_SearchResult" />
         <activity android:name=".tab.rentbike.Tab_RentBike_Detail" />
         <activity android:name=".tab.rentbike.Tab_RentBike_Detail_Confirm" />
-        <activity android:name=".tab.sellBike.Tab_SellBike_detail"></activity>
+        <activity android:name=".tab.sellBike.Tab_SellBike_detail" />
+        <activity android:name=".tab.rentbike.Tab_RentBike_Pay" />
+        <activity android:name=".tab.sellBike.tab_sell_bike_pay"></activity>
     </application>
 
 </manifest>

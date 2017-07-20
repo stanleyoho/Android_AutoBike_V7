@@ -1,12 +1,13 @@
 package autobike.stanley.idv.android_autobike_v7.navigationlayout;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by Stanley_NB on 2017/7/7.
  */
 
-public class RentOrder {
+public class RentOrder implements Serializable{
 
     private String rentno;
     private String memno;

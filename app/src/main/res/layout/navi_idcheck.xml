@@ -8,6 +8,9 @@
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_IDCheck">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -127,5 +130,5 @@
             android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

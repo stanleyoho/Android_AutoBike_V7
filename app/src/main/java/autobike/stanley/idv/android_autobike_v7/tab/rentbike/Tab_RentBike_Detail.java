@@ -45,7 +45,7 @@ public class Tab_RentBike_Detail extends AppCompatActivity {
         setAdd_SubListener();
         //get bundle
         bundle = getIntent().getExtras();
-        String type = ((Motor)bundle.getSerializable("sellmotor")).getModtype();
+        String type = ((Motor)bundle.getSerializable("motor")).getModtype();
 
         //get location list
         try {

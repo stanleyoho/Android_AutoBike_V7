@@ -8,6 +8,10 @@
     android:id="@+id/navi_rentList_Layout"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvRentList"
         android:layout_width="match_parent"
@@ -15,5 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true" />
+
+    </ScrollView>
 
 </RelativeLayout>

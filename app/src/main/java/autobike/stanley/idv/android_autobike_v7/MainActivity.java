@@ -87,6 +87,12 @@ public class MainActivity extends FragmentActivity {
         makeTabs();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        initDrawer();
+    }
+
     private void makeTabs() {
         //獲取TabHost控制元件
         final FragmentTabHost mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
@@ -132,12 +138,6 @@ public class MainActivity extends FragmentActivity {
 //        });
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        profile.clean();
-    }
 
     private void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -247,6 +247,7 @@ public class MainActivity extends FragmentActivity {
 
     public static class AlertDialogFragment
             extends DialogFragment implements DialogInterface.OnClickListener {
+
         @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {

@@ -58,16 +58,16 @@
         android:layout_below="@+id/tvNormalRegister"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/tvreg_later"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="@string/login_later"
-        android:layout_marginBottom="22dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/tvNormalRegister"
-        android:layout_toEndOf="@+id/tvNormalRegister" />
+    <!--<TextView-->
+        <!--android:id="@+id/tvreg_later"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:text="@string/login_later"-->
+        <!--android:layout_marginBottom="22dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_toRightOf="@+id/tvNormalRegister"-->
+        <!--android:layout_toEndOf="@+id/tvNormalRegister" />-->
 
 </RelativeLayout>
