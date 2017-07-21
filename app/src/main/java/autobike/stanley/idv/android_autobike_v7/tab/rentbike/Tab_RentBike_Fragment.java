@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.net.sip.SipAudioCall;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -95,6 +96,7 @@ public class Tab_RentBike_Fragment extends Fragment {
             }
 
         });
+
         ivTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
