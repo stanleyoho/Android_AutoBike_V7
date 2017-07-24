@@ -1,34 +1,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="172dp"
-    android:background="#f6ca31"
+    android:background="@drawable/navibackground"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="10dp"
     android:weightSum="1">
 
     <ImageView
         android:id="@+id/ivUser"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/android6_notext"
-        android:layout_weight="0.36" />
+        android:layout_marginLeft="20dp"
+        android:layout_weight="0.35"
+        android:src="@drawable/head" />
 
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:text="Stanley"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:textStyle="bold"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stanley_text_Email"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="20sp" />
 
 </LinearLayout>

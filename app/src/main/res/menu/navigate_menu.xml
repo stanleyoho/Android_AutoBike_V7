@@ -4,27 +4,32 @@
     <group android:checkableBehavior="single">
         <item
               android:id="@+id/memberData"
-
+              android:icon="@drawable/user"
               android:title="會員資料"
             />
         <item
             android:id="@+id/rentList"
+            android:icon="@drawable/list"
             android:title="租賃單資料" />
 
         <item
             android:id="@+id/secondList"
+            android:icon="@drawable/list"
             android:title="二手車訂單資料" />
 
         <item
             android:id="@+id/idCheckStatus"
+            android:icon="@drawable/identity"
             android:title="實名認證" />
 
         <item
             android:id="@+id/settingPage"
+            android:icon="@drawable/settings"
             android:title="設置" />
 
         <item
             android:id="@+id/logOut"
+            android:icon="@drawable/logout"
             android:title="登出" />
     </group>
 </menu>

@@ -10,7 +10,7 @@ public class Common {
 
 //    public static String URL = "http://192.168.196.189:8080/Spot_MySQL_Web/";
 //    public static String URL = "http://10.0.2.2:8081/Spot_MySQL_Web/";
-    public static String temp = "192.168.196.152";
+    public static String temp = "10.0.2.2";
     public static String URL = "http://"+temp+":8081/AutoBike_Android_Server/";//10.0.2.2
     public static String URL_MemServlet = "http://"+temp+":8081/AutoBike_Android_Server/MemberServlet";
     public static String URL_SecOrdServlet = "http://"+temp+":8081/AutoBike_Android_Server/SecOrdServlet";

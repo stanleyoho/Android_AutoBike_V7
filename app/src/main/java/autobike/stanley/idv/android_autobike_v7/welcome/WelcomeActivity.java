@@ -15,6 +15,7 @@ import java.util.Set;
 
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.login.LoginActivity;
+import autobike.stanley.idv.android_autobike_v7.login.LoginNormalActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 

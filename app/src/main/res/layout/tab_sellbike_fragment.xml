@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
-    android:background="#f6ca31"
+    android:background="#faf337"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.sellBike.Tab_SellBike_Fragment">
 
     <android.support.v4.widget.SwipeRefreshLayout

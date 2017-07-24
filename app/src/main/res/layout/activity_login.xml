@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5c927"
+    android:background="#fef934"
     tools:context="autobike.stanley.idv.android_autobike_v7.login.LoginActivity">
 
     <TextView
@@ -26,7 +26,7 @@
         android:text="@string/use_e_mail"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="67dp"
         android:id="@+id/tvNormalRegister"
         android:textAlignment="center"
         android:layout_below="@+id/textView"
@@ -37,7 +37,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="@string/login_login"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="65dp"
         android:id="@+id/tvNormalLogin"
         android:layout_below="@+id/tvNormalRegister"
         android:layout_centerHorizontal="true" />

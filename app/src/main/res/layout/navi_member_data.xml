@@ -4,24 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5c927"
+    android:background="#fef934"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/memdata_title"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginTop="23dp"
-        android:id="@+id/tvmemdataTitle" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="15dp" >
@@ -35,6 +25,7 @@
             android:id="@+id/memid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#aaaaab"
             android:textSize="20sp"
             android:text="@string/memdata_memname" />
 
