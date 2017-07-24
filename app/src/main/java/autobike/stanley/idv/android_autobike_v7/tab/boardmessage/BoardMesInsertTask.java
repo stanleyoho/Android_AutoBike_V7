@@ -17,35 +17,40 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import autobike.stanley.idv.android_autobike_v7.tab.news.News;
-
 /**
- * Created by Stanley_NB on 2017/6/29.
+ * Created by Stanley_NB on 2017/7/24.
  */
 
-public class BoardMesGetAllTask  extends AsyncTask<Object, Integer, List<BoardMessage>> {
-private final static String TAG = "BoardMesGetAllTask";
-private final static String ACTION = "getAll";
+public class BoardMesInsertTask extends AsyncTask<Object, Integer, String> {
+    private final static String TAG = "BoardMesGetAllTask";
+    private final static String ACTION = "insert";
 
-@Override
-protected List<BoardMessage> doInBackground(Object... params) {
+    @Override
+    protected String doInBackground(Object... params) {
         String url = params[0].toString();
-        String jsonIn;
+        BoardMessage boardMessage = (BoardMessage) params[1];
         JsonObject jsonObject = new JsonObject();
+        if (params[2] != null) {
+            String imageBase64 = params[2].toString();
+            jsonObject.addProperty("image", imageBase64);
+        }
+        String jsonIn;
         jsonObject.addProperty("action", ACTION);
+        jsonObject.addProperty("boardMessage", new Gson().toJson(boardMessage));
         try {
-        jsonIn = getRemoteData(url, jsonObject.toString());
+            jsonIn = getRemoteData(url, jsonObject.toString());
         } catch (IOException e) {
-        Log.e(TAG, e.toString());
-        return null;
+            Log.e(TAG, e.toString());
+            return null;
         }
 
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<BoardMessage>>() { }.getType();
-        return gson.fromJson(jsonIn, listType);
-        }
+//        Gson gson = new Gson();
+//        Type listType = new TypeToken<List<BoardMessage>>() { }.getType();
+//        return gson.fromJson(jsonIn, listType);
+        return jsonIn;
+    }
 
-private String getRemoteData(String url, String jsonOut) throws IOException {
+    private String getRemoteData(String url, String jsonOut) throws IOException {
         StringBuilder jsonIn = new StringBuilder();
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setDoInput(true); // allow inputs
@@ -61,17 +66,17 @@ private String getRemoteData(String url, String jsonOut) throws IOException {
         int responseCode = connection.getResponseCode();
 
         if (responseCode == 200) {
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String line;
-        while ((line = br.readLine()) != null) {
-        jsonIn.append(line);
-        }
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            while ((line = br.readLine()) != null) {
+                jsonIn.append(line);
+            }
         } else {
-        Log.d(TAG, "response code: " + responseCode);
+            Log.d(TAG, "response code: " + responseCode);
         }
         connection.disconnect();
         Log.d(TAG, "jsonIn: " + jsonIn);
         return jsonIn.toString();
-       }
+    }
 }
 

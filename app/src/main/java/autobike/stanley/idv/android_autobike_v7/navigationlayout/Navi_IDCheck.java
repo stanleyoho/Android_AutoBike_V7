@@ -29,6 +29,7 @@ import java.io.File;
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
+import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 
@@ -56,8 +57,14 @@ public class Navi_IDCheck extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         findViews();
         profile = new Profile(getActivity());
+        if(profile.getData("Memstatus").equals("confirmed")){
+            Toast.makeText(getActivity(),"認證已完成",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }
         /////check status
 //        String memStatus = profile.getData("Memstatus");
 //        if(memStatus.equals("confirmed")){

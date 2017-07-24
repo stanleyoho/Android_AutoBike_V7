@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
@@ -167,25 +169,21 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
         @Override
         public View getInfoWindow(Marker marker) {
             int logoId;
-            if ((marker.getTitle()).equals("台北車站")) {
-                logoId = R.drawable.megaphone;
-            } else if ((marker.getTitle()).equals("總部")) {
-                logoId = R.drawable.megaphone;
-            } else if ((marker.getTitle()).equals("板橋車站")) {
-                logoId = R.drawable.megaphone;
-            }else if ((marker.getTitle()).equals("臺中車站")) {
-                logoId = R.drawable.megaphone;
-            }else if ((marker.getTitle()).equals("台南車站")) {
-                logoId = R.drawable.megaphone;
-            }else if ((marker.getTitle()).equals("高雄車站")) {
-                logoId = R.drawable.megaphone;
-            }else{
-                logoId = 0;
-            }
-
             ImageView ivLogo = ((ImageView) infoWindow
                     .findViewById(R.id.ivLogo));
-            ivLogo.setImageResource(logoId);
+            for(autobike.stanley.idv.android_autobike_v7.tab.location.Location loc : locationList){
+                if ((marker.getTitle()).equals(loc.getLocname())) {
+                    try {
+                        new LocationGetImageTask(ivLogo).execute(Common.URL_LocationServlet,loc.getLocno(),128).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    logoId = 0;
+                }
+            }
 
             String title = marker.getTitle();
             TextView tvTitle = ((TextView) infoWindow

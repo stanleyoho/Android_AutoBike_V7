@@ -7,14 +7,16 @@
     android:background="#f6ca31"
     android:layout_margin="0dp"
     android:orientation="vertical"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment"
+    android:weightSum="1">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/mm101"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/mm101"
+        android:layout_weight="0.15" />
 
     <LinearLayout
         android:layout_marginLeft="10dp"

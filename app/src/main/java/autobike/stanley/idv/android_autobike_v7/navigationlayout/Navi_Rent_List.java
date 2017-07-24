@@ -88,7 +88,7 @@ public class Navi_Rent_List extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(RentListRecyclerViewAdapter.MyViewHolder holder, int position) {
+        public void onBindViewHolder(RentListRecyclerViewAdapter.MyViewHolder holder, final int position) {
             rentOrder = rentOrdersList.get(position);
             String url = Common.URL + "MotorModelServlet";
             String ordno = rentOrder.getRentno();
@@ -109,6 +109,26 @@ public class Navi_Rent_List extends Fragment {
             holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
             holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getStatus());
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RentOrder rentOrder = rentOrdersList.get(position);
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(),Navi_Rent_List_Detail_Page.class);
+                    Bundle bundle = new Bundle();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    bundle.putString("rentno",rentOrder.getRentno());
+                    bundle.putString("getstart",rentOrder.getSlocno());
+                    bundle.putString("getback",rentOrder.getRlocno());
+                    bundle.putString("rentstatus",rentOrder.getStatus());
+                    bundle.putString("motortype",motorBrand);
+                    bundle.putString("startdate",sdf.format(rentOrder.getStartdate()));
+                    bundle.putString("enddate",sdf.format(rentOrder.getEnddate()));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
+
         }
         class MyViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
@@ -122,24 +142,7 @@ public class Navi_Rent_List extends Fragment {
                 tvRentLocStart = (TextView) itemView.findViewById(R.id.tvRentListgetloc);
                 tvRentLocBack = (TextView) itemView.findViewById(R.id.tvRentListbackloc);
                 tvRentStatus = (TextView) itemView.findViewById(R.id.tvRentListstatus);
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent();
-                        intent.setClass(getActivity(),Navi_Rent_List_Detail_Page.class);
-                        Bundle bundle = new Bundle();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        bundle.putString("rentno",rentOrder.getRentno());
-                        bundle.putString("getstart",rentOrder.getSlocno());
-                        bundle.putString("getback",rentOrder.getRlocno());
-                        bundle.putString("rentstatus",rentOrder.getStatus());
-                        bundle.putString("motortype",motorBrand);
-                        bundle.putString("startdate",sdf.format(rentOrder.getStartdate()));
-                        bundle.putString("enddate",sdf.format(rentOrder.getEnddate()));
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
-                });
+
             }
         }
 

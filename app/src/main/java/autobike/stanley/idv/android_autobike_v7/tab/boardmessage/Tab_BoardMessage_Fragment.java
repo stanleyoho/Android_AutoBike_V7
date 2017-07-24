@@ -2,6 +2,8 @@ package autobike.stanley.idv.android_autobike_v7.tab.boardmessage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -20,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
@@ -29,12 +32,13 @@ public class Tab_BoardMessage_Fragment extends Fragment {
     private static final String TAG = "BoardMesListFragment";
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvBoardMessage;
+    private Bundle bundle;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_boardmessage_fragment, container, false);
-
+        bundle  = new Bundle();
         swipeRefreshLayout =
                 (SwipeRefreshLayout) view.findViewById(R.id.boardMesswipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -48,14 +52,14 @@ public class Tab_BoardMessage_Fragment extends Fragment {
 
         rvBoardMessage = (RecyclerView) view.findViewById(R.id.rvBoardMes);
         rvBoardMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        FloatingActionButton btAdd = (FloatingActionButton) view.findViewById(R.id.btAdd);
-//        btAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent insertIntent = new Intent(getActivity(), SpotInsertActivity.class);
-//                startActivity(insertIntent);
-//            }
-//        });
+        FloatingActionButton btAdd = (FloatingActionButton) view.findViewById(R.id.btAdd);
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Tab_BoardMessage_AddMessage.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -101,7 +105,7 @@ public class Tab_BoardMessage_Fragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(BoardMessageRecyclerViewAdapter.MyViewHolder myViewHolder, int position) {
+        public void onBindViewHolder(final BoardMessageRecyclerViewAdapter.MyViewHolder myViewHolder, int position) {
 
             final BoardMessage boardmes = boardmesList.get(position);
             String url = Common.URL + "MesBoardServlet";
@@ -110,6 +114,16 @@ public class Tab_BoardMessage_Fragment extends Fragment {
             new BoardMessageGetImageTask(myViewHolder.imageView).execute(url, mesno, imageSize);
             myViewHolder.tvName.setText(boardmes.getMemno());
             myViewHolder.tvPhoneNo.setText(boardmes.getMemno());
+
+            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bundle.putSerializable("boardmes",boardmes);
+                    Intent intent = new Intent(getActivity(),Tab_BoardMessage_DetailMessage.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {

@@ -90,7 +90,7 @@ public class Tab_RentBike_Detail extends AppCompatActivity {
         getLocation.setSelection(0,true);
         backLocation.setAdapter(adapterLocations);
         backLocation.setSelection(0,true);
-        String[] tradeWayArray = {"信用卡","銀行轉帳"};
+        String[] tradeWayArray = {"信用卡"};
         ArrayAdapter<String> adapterTrade = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tradeWayArray);
         adapterTrade.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         payWay.setAdapter(adapterTrade);

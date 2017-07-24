@@ -26,7 +26,7 @@ public class Navi_Member_Data extends Fragment {
     private Member member;
     private Fragment fbody;
     private View view;
-    private TextView memid,memAccount,memdataMail,memdataAddr,memdataSex,memdataPhone,memdataBirth;
+    private TextView memid,memAccount,memdataMail,memdataAddr,memdataSex,memdataPhone,memdataBirth,memdataStatus;
     private Button btnChange;
 
     @Override
@@ -53,6 +53,14 @@ public class Navi_Member_Data extends Fragment {
             memdataSex.setText(member.getSex());
             memdataPhone.setText(member.getPhone());
             memdataBirth.setText(new SimpleDateFormat("yyyy-MM-dd").format( member.getBirth()));
+            if(member.getStatus().equals("unconfirmed")){
+                memdataStatus.setText("簡易認證");
+            }else if(member.getStatus().equals("verifing")){
+                memdataStatus.setText("等待驗證中");
+            }else if(member.getStatus().equals("confirmed")){
+                memdataStatus.setText("已認證");
+            }
+            profile.setData("Memstatus",member.getStatus());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -80,6 +88,7 @@ public class Navi_Member_Data extends Fragment {
         memdataPhone =(TextView) (getView().findViewById(R.id.memdataPhone));
         memdataBirth =(TextView) (getView().findViewById(R.id.memdataBirth));
         btnChange = (Button) (getView().findViewById(R.id.btn_changeMemData));
+        memdataStatus = (TextView) (getView().findViewById(R.id.memdataStatus));
     }
 
 //    private Member getMemData() {

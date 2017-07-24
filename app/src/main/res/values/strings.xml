@@ -82,6 +82,7 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="cancelord">確定要取消訂單?</string>
     <string name="change_memdate">修改會員資料</string>
+    <string name="MemStatus">認證狀態 :</string>
 
 
 </resources>

@@ -30,6 +30,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
+import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.login.LoginNormalRegisterActivity;
 
@@ -41,6 +42,7 @@ public class Tab_RentBike_Fragment extends Fragment {
     Spinner spDays,spBrand,spCC;
     View view;
     Button  btnSearch;
+    private Profile profile;
 
     @Nullable
     @Override
@@ -54,6 +56,7 @@ public class Tab_RentBike_Fragment extends Fragment {
         super.onStart();
         String[] days = {"1", "2", "3", "4","5","6","7"};
         String[] brand = {"----","Kawasaki","YAMAHA","Benelli","KTM","SYM","KYMCO","AEON","SUZUKI"};
+        profile = new Profile(getActivity());
         btnSearch = (Button) view.findViewById(R.id.searchButton);
         spDays = (Spinner)view.findViewById(R.id.spDays);
         spDays.setSelection(0,true);
@@ -122,10 +125,15 @@ public class Tab_RentBike_Fragment extends Fragment {
                 bundle.putString("Rentday",spDays.getSelectedItem().toString());
                 bundle.putString("Date",tvdateResult.getText().toString());
                 bundle.putString("Time",tvtimeResult.getText().toString());
-                Intent intent = new Intent();
-                intent.putExtras(bundle);
-                intent.setClass(getActivity(),Tab_RentBike_SearchResult.class);
-                startActivity(intent);
+                if(profile.getData("Memstatus").equals("confirmed")){
+                    Intent intent = new Intent();
+                    intent.putExtras(bundle);
+                    intent.setClass(getActivity(),Tab_RentBike_SearchResult.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(),"必須做身分驗證才能租車",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

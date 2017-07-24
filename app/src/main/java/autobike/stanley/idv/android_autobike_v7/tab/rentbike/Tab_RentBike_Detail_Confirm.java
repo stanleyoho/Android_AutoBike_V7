@@ -65,7 +65,7 @@ public class Tab_RentBike_Detail_Confirm extends AppCompatActivity {
                     String endDate = bundle.getString("endDate");
                     String Time = bundle.getString("Time");
                     String startFormat  = startDate + " " + Time + ":00";
-                    String endFormat  = startDate + " " + Time + ":00";
+                    String endFormat  = endDate + " " + Time + ":00";
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     rentOrder.setMilstart(motor.getMile());
                     rentOrder.setTotal(totalPrice);
