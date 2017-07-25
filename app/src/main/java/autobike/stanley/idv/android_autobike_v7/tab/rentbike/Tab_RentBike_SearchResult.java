@@ -51,7 +51,7 @@ public class Tab_RentBike_SearchResult extends AppCompatActivity {
             progressDialog.setMessage("Loading...");
             progressDialog.show();
             try {
-                if(bundle.getString("brand").equals("----")){//getIntent().getStringExtra("brand").equals("----")
+                if(bundle.getString("brand").equals("all")){//getIntent().getStringExtra("brand").equals("----")
                     motorList = new MotorGetAllTask().execute(url).get();
                 }else{
                     motorList = new MotorGetAllWithBrandTask().execute(url,getIntent().getStringExtra("brand")).get();

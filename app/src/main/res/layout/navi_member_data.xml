@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fef934"
+    android:padding="10dp"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data">
 
@@ -19,12 +20,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="@string/memdata_memname"
             android:textSize="20sp" />
         <TextView
             android:id="@+id/memid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:textColor="#aaaaab"
             android:textSize="20sp"
             android:text="@string/memdata_memname" />

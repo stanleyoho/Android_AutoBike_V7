@@ -9,6 +9,8 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -36,26 +38,38 @@ import autobike.stanley.idv.android_autobike_v7.login.LoginNormalRegisterActivit
 
 public class Tab_RentBike_Fragment extends Fragment {
 
-    ViewPager viewpager;
-    ImageView ivCalendar,ivTime;
-    TextView tvdateResult,tvtimeResult;
-    Spinner spDays,spBrand,spCC;
-    View view;
-    Button  btnSearch;
+    private ViewPager viewpager;
+    private ImageView ivCalendar,ivTime,ivvpImage;
+    private TextView tvdateResult,tvtimeResult;
+    private Spinner spDays,spBrand,spCC;
+    private View view;
+    private Button  btnSearch;
     private Profile profile;
+    private List<Integer> vpList;
+    private ViewPager vppager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab_rentbike_fragment, container, false);
+        vpList = new ArrayList<Integer>();
+        vpList.add(R.drawable.mm101);
+        vpList.add(R.drawable.mm102);
+        vpList.add(R.drawable.mm103);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), vpList);
+        ivvpImage = (ImageView) view.findViewById(R.id.ivvpImage);
+        vppager = (ViewPager)view.findViewById(R.id.vppager);
+        vppager.setAdapter(viewPagerAdapter);
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTimeTask(),2000,3000);
         String[] days = {"1", "2", "3", "4","5","6","7"};
-        String[] brand = {"----","Kawasaki","YAMAHA","Benelli","KTM","SYM","KYMCO","AEON","SUZUKI"};
+        String[] brand = {"all","Kawasaki","YAMAHA","Benelli","KTM","SYM","KYMCO","AEON","SUZUKI"};
         profile = new Profile(getActivity());
         btnSearch = (Button) view.findViewById(R.id.searchButton);
         spDays = (Spinner)view.findViewById(R.id.spDays);
@@ -147,4 +161,45 @@ public class Tab_RentBike_Fragment extends Fragment {
         return String.format("%02d",hour) + ":" + String.format("%02d",minute);
     }
 
+    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
+        List<Integer> vpberList;
+
+        private ViewPagerAdapter(FragmentManager fm, List<Integer> memberList) {
+            super(fm);
+            this.vpberList = memberList;
+        }
+
+        @Override
+        public int getCount() {
+            return vpberList.size();
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            int temp = vpList.get(position);
+            tab_rentbike_viewpager vpfragment = new tab_rentbike_viewpager();
+            Bundle args = new Bundle();
+            args.putInt("vp", temp);
+            vpfragment.setArguments(args);
+            return vpfragment;
+        }
+    }
+
+    public class MyTimeTask extends TimerTask{
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(vppager.getCurrentItem()==0){
+                        vppager.setCurrentItem(1);
+                    }
+                    else if(vppager.getCurrentItem()==(1)){
+                        vppager.setCurrentItem(2);
+                    }
+                    else vppager.setCurrentItem(0);
+                }
+            });
+        }
+    }
 }

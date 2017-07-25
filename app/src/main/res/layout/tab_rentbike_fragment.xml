@@ -10,13 +10,16 @@
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment"
     android:weightSum="1">
 
-
-    <ImageView
-        android:layout_width="match_parent"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vppager"
+        android:layout_width="wrap_content"
         android:layout_height="220dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/mm101"
-        android:layout_weight="0.15" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
+
+    </android.support.v4.view.ViewPager>
 
     <LinearLayout
         android:layout_marginLeft="10dp"
