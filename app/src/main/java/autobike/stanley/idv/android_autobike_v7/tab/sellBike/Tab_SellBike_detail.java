@@ -112,7 +112,7 @@ public class Tab_SellBike_detail extends AppCompatActivity {
         //set motor price
         tvsellprice.setText(motorModel.getSaleprice().toString());
         //set payway spinner
-        String[] tradeWayArray = {"信用卡","銀行轉帳"};
+        String[] tradeWayArray = {"信用卡"};
         ArrayAdapter<String> adapterTrade = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tradeWayArray);
         adapterTrade.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spsellpayway.setAdapter(adapterTrade);

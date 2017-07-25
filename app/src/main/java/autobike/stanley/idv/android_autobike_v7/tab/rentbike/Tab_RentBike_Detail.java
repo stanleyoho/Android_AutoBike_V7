@@ -46,6 +46,7 @@ public class Tab_RentBike_Detail extends AppCompatActivity {
         //get bundle
         bundle = getIntent().getExtras();
         String type = ((Motor)bundle.getSerializable("motor")).getModtype();
+        String locno = ((Motor) bundle.getSerializable("motor")).getLocno();
 
         //get location list
         try {
@@ -87,7 +88,12 @@ public class Tab_RentBike_Detail extends AppCompatActivity {
         ArrayAdapter<String> adapterLocations = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationArray);
         adapterLocations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         getLocation.setAdapter(adapterLocations);
-        getLocation.setSelection(0,true);
+        for(int i = 0 ; i <locationArray.length ; i ++){
+            String temp = locationArray[i];
+            if(temp.equals(Common.checkLocation(locno))){
+                getLocation.setSelection(i,true);
+            }
+        }
         backLocation.setAdapter(adapterLocations);
         backLocation.setSelection(0,true);
         String[] tradeWayArray = {"信用卡"};

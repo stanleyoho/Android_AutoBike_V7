@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5c927"
+    android:background="#fef934"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Change_Member_Data">
 
@@ -28,6 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/memdate_Mail"
             android:textSize="20sp" />
         <EditText
@@ -51,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memdata_Addr"
+            android:textStyle="bold"
             android:textSize="20sp" />
         <EditText
             android:id="@+id/etChangeAddress"
@@ -72,6 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/memdate_Phone"
             android:textSize="20sp" />
         <EditText
@@ -83,12 +86,22 @@
             android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/btn_memdatachangconfirm"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="confirm"/>
+        android:layout_marginTop="220dp">
 
+        <Button
+            android:id="@+id/btn_memdatachangconfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/buttonshape"
+            android:text="確認" />
 
+    </RelativeLayout>
 </LinearLayout>

@@ -30,66 +30,114 @@
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvRentListNo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="訂單編號"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="22dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="14dp"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/tvRentListCarNo"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="訂單編號 : "
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvRentListNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="訂單編號"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="車輛編號"
-                android:textColor="#555555"
-                android:layout_below="@+id/tvRentListNo"
-                android:layout_alignLeft="@+id/tvRentListNo"
-                android:layout_alignStart="@+id/tvRentListNo" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/tvRentListgetloc"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="車輛編號 : "
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvRentListCarNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="車輛編號"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tvRentListCarNo"
-                android:layout_alignStart="@+id/tvRentListCarNo"
-                android:layout_below="@+id/tvRentListCarNo"
-                android:text="起車地點"
-                android:textColor="#555555" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/tvRentListbackloc"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="取/還車地點 : "
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvRentListgetloc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="起車"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="/ "
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvRentListbackloc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="還車"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tvRentListgetloc"
-                android:layout_alignStart="@+id/tvRentListgetloc"
-                android:layout_below="@+id/tvRentListgetloc"
-                android:text="還車地點"
-                android:textColor="#555555" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp">
 
-            <TextView
-                android:id="@+id/tvRentListstatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tvRentListbackloc"
-                android:layout_alignStart="@+id/tvRentListbackloc"
-                android:layout_below="@+id/tvRentListbackloc"
-                android:text="訂單狀態"
-                android:textColor="#555555" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="訂單狀態 : "
+                    android:textColor="#000000" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvRentListstatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="訂單狀態"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

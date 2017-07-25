@@ -130,12 +130,15 @@ public class MainActivity extends FragmentActivity {
                         .setIndicator("",getResources().getDrawable(R.drawable.location))
                 ,Tab_Location_Fragment.class,bundle);
 
-//        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-//            @Override
-//            public void onTabChanged(String tabId) {
-//                Toast.makeText(MainActivity.this,"logTab",Toast.LENGTH_LONG).show();
-//            }
-//        });
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                android.app.Fragment fragment = getFragmentManager().findFragmentByTag("mempage");
+                if(mTabHost.getCurrentTabTag().equals("TAB_1_TAG")){
+
+                }
+            }
+        });
     }
 
 

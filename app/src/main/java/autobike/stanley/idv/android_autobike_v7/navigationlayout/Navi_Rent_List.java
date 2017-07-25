@@ -94,7 +94,7 @@ public class Navi_Rent_List extends Fragment {
             String ordno = rentOrder.getRentno();
             int imageSize = 200;
             new GetMotorModelImageByRentNo(holder.imageView).execute(url, ordno, imageSize);
-            holder.tvRentNo.setText("訂單編號 :  " + rentOrder.getRentno());
+            holder.tvRentNo.setText(rentOrder.getRentno());
             url = Common.URL+"MotorServlet";
             String tempMotono = rentOrder.getMotno();
             try {
@@ -104,10 +104,10 @@ public class Navi_Rent_List extends Fragment {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            holder.tvRentCarNo.setText("車輛型號 :  " + motorBrand );
-            holder.tvRentLocStart.setText("取車地點 :  " + rentOrder.getSlocno());
-            holder.tvRentLocBack.setText("還車地點 :  " + rentOrder.getRlocno());
-            holder.tvRentStatus.setText("訂單狀態 :  " + rentOrder.getStatus());
+            holder.tvRentCarNo.setText(motorBrand );
+            holder.tvRentLocStart.setText(Common.checkLocation(rentOrder.getSlocno()));
+            holder.tvRentLocBack.setText(Common.checkLocation(rentOrder.getRlocno()));
+            holder.tvRentStatus.setText(Common.ordStaturCheck(rentOrder.getStatus()));
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

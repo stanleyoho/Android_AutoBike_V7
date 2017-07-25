@@ -53,13 +53,8 @@ public class Navi_Member_Data extends Fragment {
             memdataSex.setText(member.getSex());
             memdataPhone.setText(member.getPhone());
             memdataBirth.setText(new SimpleDateFormat("yyyy-MM-dd").format( member.getBirth()));
-            if(member.getStatus().equals("unconfirmed")){
-                memdataStatus.setText("簡易認證");
-            }else if(member.getStatus().equals("verifing")){
-                memdataStatus.setText("等待驗證中");
-            }else if(member.getStatus().equals("confirmed")){
-                memdataStatus.setText("已認證");
-            }
+            memdataStatus.setText(Common.idStaturCheck(member.getStatus()));
+
             profile.setData("Memstatus",member.getStatus());
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="#fef934"
     android:padding="10dp"
+    android:divider="@drawable/line2"
+    android:showDividers="middle"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Member_Data">
 
@@ -15,22 +17,36 @@
         android:orientation="horizontal"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:divider="@drawable/buttonshape"
+
+        android:layout_marginTop="20dp" >
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:text="@string/memdata_memname"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/memid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:textColor="#aaaaab"
             android:textSize="20sp"
-            android:text="@string/memdata_memname" />
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:text="@string/memdata_memname"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+
+
 
     </LinearLayout>
 
@@ -39,20 +55,28 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memdata_memaccount"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/memAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/memdata_memaccount"
-            android:textSize="20sp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/memdata_memaccount"
+                android:textSize="20sp" />
+        </FrameLayout>
+
 
     </LinearLayout>
 
@@ -61,21 +85,29 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memdate_Mail"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/memdataMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/memdate_Mail"
-            android:maxLines="1"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memdataMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:text="@string/memdate_Mail"
+                android:maxLines="1"/>
+        </FrameLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -83,21 +115,29 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memdata_Addr"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:maxLines="2"
-            android:text="@string/memdata_Addr"
-            android:id="@+id/memdataAddr" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:maxLines="2"
+                android:text="@string/memdata_Addr"
+                android:id="@+id/memdataAddr" />
+        </FrameLayout>
+
 
     </LinearLayout>
 
@@ -107,21 +147,31 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/memdata_Sex"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/memdataSex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:maxLines="1"
-            android:text="@string/memdata_Sex" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memdataSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:text="@string/memdata_Sex" />
+
+        </FrameLayout>
+
+
 
     </LinearLayout>
 
@@ -130,21 +180,31 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memdate_Phone"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/memdataPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:maxLines="1"
-            android:text="@string/memdate_Phone" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memdataPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:maxLines="1"
+                android:text="@string/memdate_Phone" />
+
+        </FrameLayout>
+
+
 
     </LinearLayout>
 
@@ -153,20 +213,29 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/memdate_Birth"
             android:textSize="20sp" />
-        <TextView
-            android:id="@+id/memdataBirth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:maxLines="1"
-            android:text="@string/memdate_Birth" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memdataBirth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:maxLines="1"
+                android:layout_gravity="right"
+                android:text="@string/memdate_Birth" />
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
@@ -175,26 +244,47 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="15dp" >
+        android:layout_marginTop="25dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/MemStatus"
+            android:textStyle="bold"
             android:textSize="20sp" />
-        <TextView
-            android:id="@+id/memdataStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:maxLines="1"
-            android:text="@string/memdate_Birth" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/memdataStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_gravity="right"
+                android:maxLines="1"
+                android:text="@string/memdate_Birth" />
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_changeMemData"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="change"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/btn_changeMemData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
+            android:text="修改會員資料"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 </LinearLayout>

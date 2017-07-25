@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
@@ -84,14 +86,17 @@ public class Tab_RentBike_SearchResult extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView motorNewsTitle, motorNewsDetail;
+            TextView motorNewsTitle, tvMotoNumber,tvMotostatus,tvMotorMils,tvMotosLocNow;
             ImageView ivimage;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 motorNewsTitle = (TextView) itemView.findViewById(R.id.tvMotoTitle);
-                motorNewsDetail = (TextView) itemView.findViewById(R.id.tvMotoDetail);
+                tvMotoNumber = (TextView) itemView.findViewById(R.id.tvMotoNumber);
                 ivimage = (ImageView) itemView.findViewById(R.id.ivRentImage);
+                tvMotostatus = (TextView)itemView.findViewById(R.id.tvMotostatus);
+                tvMotorMils = (TextView)itemView.findViewById(R.id.tvMotorMils);
+                tvMotosLocNow = (TextView)itemView.findViewById(R.id.tvMotosLocNow);
             }
         }
 
@@ -115,8 +120,11 @@ public class Tab_RentBike_SearchResult extends AppCompatActivity {
             new GetMotorModelImageByMotoType(viewHolder.ivimage).execute(url, mototype, imageSize);
 
             //get image & set bundle
-            viewHolder.motorNewsTitle.setText("機車型號 : " + motor.getModtype());
-            viewHolder.motorNewsDetail.setText("車牌號碼: " + motor.getPlateno() + "\r\n" + "機車狀態: " + motor.getStatus() + "\r\n" + "機車里程數 : " + motor.getMile() +  "\r\n" + "機車所在地 : " +motor.getLocno());
+            viewHolder.motorNewsTitle.setText(motor.getModtype());
+            viewHolder.tvMotoNumber.setText(motor.getPlateno() );
+            viewHolder.tvMotostatus.setText(Common.motorStaturCheck(motor.getStatus()));
+            viewHolder.tvMotorMils.setText(String.valueOf(motor.getMile()));
+            viewHolder.tvMotosLocNow.setText(Common.checkLocation(motor.getLocno()));
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

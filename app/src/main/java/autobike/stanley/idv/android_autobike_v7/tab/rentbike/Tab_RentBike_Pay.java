@@ -1,5 +1,7 @@
 package autobike.stanley.idv.android_autobike_v7.tab.rentbike;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,11 +16,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.GetSellVOBySellNoTask;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Rent_List;
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_Sell_List_Detail_Page;
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.SellOrder;
+import autobike.stanley.idv.android_autobike_v7.navigationlayout.UpdateSellStatusTask;
 
 public class Tab_RentBike_Pay extends AppCompatActivity {
 
@@ -45,15 +53,33 @@ public class Tab_RentBike_Pay extends AppCompatActivity {
                         "".equals(etcardsec.getText().toString().trim())){
                     Toast.makeText(Tab_RentBike_Pay.this,"please fill all the data",Toast.LENGTH_SHORT).show();
                 }else{
-                    new AddOrderTask().execute(Common.URL_RentOrdServlet,bundle.getSerializable("rentorder")
-                            ,bundle.getString("hatitem"),bundle.getString("handitem")
-                            ,bundle.getString("shirtitem"),bundle.getString("v8item"));
-                    Intent intent = new Intent();
-                    intent.setClass(Tab_RentBike_Pay.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
+                    final AlertDialog build=
+                            new AlertDialog.Builder(Tab_RentBike_Pay.this)
+                                    .setIcon(R.drawable.ic_alert)
+                                    .setTitle("Really?")
+                                    .setMessage("確定付款?")
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            new AddOrderTask().execute(Common.URL_RentOrdServlet,bundle.getSerializable("rentorder")
+                                                    ,bundle.getString("hatitem"),bundle.getString("handitem")
+                                                    ,bundle.getString("shirtitem"),bundle.getString("v8item"));
+                                            Intent intent = new Intent();
+                                            intent.setClass(Tab_RentBike_Pay.this, MainActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }).create();
+                    build.show();
+
                 }
             }
         });

@@ -1,57 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:orientation="vertical"
+    android:padding="6dp"
     app:cardBackgroundColor="#fffaaa"
     app:cardCornerRadius="10dp"
-    android:padding="6dp"
-    android:layout_margin="6dp"
     app:cardElevation="6dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/ivSellMotorImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/android6_notext"/>
-    <TextView
-        android:id="@+id/tvSellMotorTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:padding="10dp"
-        android:textColor="#330033"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_alignTop="@+id/ivSellMotorImage"
-        android:layout_toRightOf="@+id/ivSellMotorImage"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentEnd="true" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvSellMotorDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="10dp"
-        android:text="detail"
-        android:textColor="#000044"
-        android:textSize="16sp"
-        android:layout_below="@+id/tvSellMotorTitle"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/ivSellMotorImage"
-        android:layout_toEndOf="@+id/ivSellMotorImage"
-        android:layout_alignBottom="@+id/ivSellMotorImage" />
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivSellMotorImage"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/android6_notext" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/ivRentImage"
+                    android:text="機車型號 : "
+                    android:textColor="#330033"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvSellMotorTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="機車型號"
+                    android:textColor="#330033"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="車牌號碼 : "
+                    android:textColor="#330033"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvSellMotorNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="車牌號碼"
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="機車里程數 : "
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvsellMotorMils"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="機車狀態"
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="機車所在地 : "
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvsellMotosLocNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="機車所在地"
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="機車狀態 : "
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvsellMotostatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="機車狀態"
+                    android:textColor="#000044"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </android.support.v7.widget.CardView>

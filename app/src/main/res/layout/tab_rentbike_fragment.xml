@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#faf337"
+    android:background="#fef934"
     android:layout_margin="0dp"
     android:orientation="vertical"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Fragment"
@@ -22,14 +22,15 @@
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"
             android:text="預約日期 : "/>
@@ -42,9 +43,29 @@
             android:text=" "/>
         <ImageView
             android:id="@+id/ivcalendar"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/calendar"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="預約時間 : "/>
+
         <TextView
             android:id="@+id/tvtimeresult"
             android:layout_width="wrap_content"
@@ -54,15 +75,15 @@
             android:text=" "/>
         <ImageView
             android:id="@+id/ivtime"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/clock"/>
 
     </LinearLayout>
-
     <LinearLayout
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -72,9 +93,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:text="租車天數 : "/>
     <Spinner
         android:id="@+id/spDays"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown">
@@ -83,8 +106,8 @@
 </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -94,20 +117,35 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:text="廠牌 : "/>
 
         <Spinner
             android:id="@+id/spBrand"
             android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown">
 
         </Spinner>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="搜尋"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/buttonshape"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 </LinearLayout>

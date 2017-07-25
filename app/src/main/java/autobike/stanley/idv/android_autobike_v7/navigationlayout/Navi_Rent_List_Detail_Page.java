@@ -36,16 +36,16 @@ public class Navi_Rent_List_Detail_Page extends AppCompatActivity {
         motortype.setText(bundle.getString("motortype"));
         rentstart.setText(bundle.getString("startdate"));
         rentback.setText(bundle.getString("enddate"));
-        rentloc.setText(bundle.getString("getstart"));
-        backloc.setText(bundle.getString("getback"));
-        rentstatus.setText(bundle.getString("rentstatus"));
+        rentloc.setText(Common.checkLocation(bundle.getString("getstart")));
+        backloc.setText(Common.checkLocation(bundle.getString("getback")));
+        rentstatus.setText(Common.ordStaturCheck(bundle.getString("rentstatus")));
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(rentstatus.getText().toString().equals("canceled")){
+                if(rentstatus.getText().toString().equals("訂單取消") || rentstatus.getText().toString().equals("正常結案")){
 
-                    Toast.makeText(Navi_Rent_List_Detail_Page.this,"This order already cancele!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Navi_Rent_List_Detail_Page.this,"此訂單已取消",Toast.LENGTH_SHORT).show();
                 }else{
 
                     final AlertDialog build=
@@ -66,7 +66,7 @@ public class Navi_Rent_List_Detail_Page extends AppCompatActivity {
                                     try {
                                         new UpdateRentStatusTask().execute(url,bundle.getString("rentno"),"canceled").get();
                                         RentOrder rentordvo = (RentOrder) new GetRentVOByRentNoTask().execute(url,bundle.getString("rentno")).get();
-                                        rentstatus.setText(rentordvo.getStatus());
+                                        rentstatus.setText(Common.ordStaturCheck(rentordvo.getStatus()));
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     } catch (ExecutionException e) {

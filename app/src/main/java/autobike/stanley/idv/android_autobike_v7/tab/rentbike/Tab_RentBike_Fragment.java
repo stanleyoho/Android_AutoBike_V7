@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,27 +48,56 @@ public class Tab_RentBike_Fragment extends Fragment {
     private Profile profile;
     private List<Integer> vpList;
     private ViewPager vppager;
+    private Timer timer;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.tab_rentbike_fragment, container, false);
         vpList = new ArrayList<Integer>();
-        vpList.add(R.drawable.mm101);
-        vpList.add(R.drawable.mm102);
-        vpList.add(R.drawable.mm103);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), vpList);
+        vpList.add(R.drawable.mm105);
+        vpList.add(R.drawable.mm106);
+        vpList.add(R.drawable.mm107);
         ivvpImage = (ImageView) view.findViewById(R.id.ivvpImage);
         vppager = (ViewPager)view.findViewById(R.id.vppager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), vpList);
         vppager.setAdapter(viewPagerAdapter);
         return view;
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        if(timer == null){
+
+        }else{
+            timer.cancel();
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(timer == null){
+
+        }else{
+            timer.cancel();
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTimeTask(),2000,3000);
+        if(timer == null){
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new MyTimeTask(),1000,1000);
+        }else{
+            timer.cancel();
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new MyTimeTask(),1000,1000);
+        }
+
         String[] days = {"1", "2", "3", "4","5","6","7"};
         String[] brand = {"all","Kawasaki","YAMAHA","Benelli","KTM","SYM","KYMCO","AEON","SUZUKI"};
         profile = new Profile(getActivity());
@@ -110,6 +140,7 @@ public class Tab_RentBike_Fragment extends Fragment {
                         String format = setDateFormat(year,month,day);
                         tvdateResult.setText(format);}
                 }, mYear,mMonth, mDay).show();
+                Log.e("vplist",String.valueOf(vpList.size()));
             }
 
         });

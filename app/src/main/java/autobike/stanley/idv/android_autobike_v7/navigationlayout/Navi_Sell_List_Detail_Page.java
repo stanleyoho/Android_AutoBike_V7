@@ -35,9 +35,9 @@ public class Navi_Sell_List_Detail_Page extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tvSellStatus.getText().toString().equals("canceled")){
+                if(tvSellStatus.getText().toString().equals("訂單取消") || tvSellStatus.getText().toString().equals("正常結案")){
 
-                    Toast.makeText(Navi_Sell_List_Detail_Page.this,"This order already cancele!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Navi_Sell_List_Detail_Page.this,"此訂單已取消",Toast.LENGTH_SHORT).show();
                 }else{
 
                     final AlertDialog build=
@@ -58,7 +58,7 @@ public class Navi_Sell_List_Detail_Page extends AppCompatActivity {
                                             try {
                                                 new UpdateSellStatusTask().execute(url,bundle.getString("sellno"),"canceled").get();
                                                 SellOrder sellordvo = (SellOrder) new GetSellVOBySellNoTask().execute(Common.URL_SecOrdServlet,bundle.getString("sellno")).get();
-                                                tvSellStatus.setText(sellordvo.getStatus());
+                                                tvSellStatus.setText(Common.ordStaturCheck(sellordvo.getStatus()));
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             } catch (ExecutionException e) {

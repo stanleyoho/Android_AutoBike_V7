@@ -174,7 +174,7 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
             for(autobike.stanley.idv.android_autobike_v7.tab.location.Location loc : locationList){
                 if ((marker.getTitle()).equals(loc.getLocname())) {
                     try {
-                        new LocationGetImageTask(ivLogo).execute(Common.URL_LocationServlet,loc.getLocno(),128).get();
+                        new LocationGetImageTask(ivLogo).execute(Common.URL_LocationServlet,loc.getLocno(),100).get();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -194,6 +194,7 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
             TextView tvSnippet = ((TextView) infoWindow
                     .findViewById(R.id.tvSnippet));
             tvSnippet.setText(snippet);
+
 
             return infoWindow;
 
@@ -220,7 +221,7 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
                     .position(new LatLng(locccc.getLon(), locccc.getLat()))
                     .title(locccc.getLocname())
                     .snippet(locccc.getAddr())
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.bikeformapred)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.placeholder)));
         }
 
     }

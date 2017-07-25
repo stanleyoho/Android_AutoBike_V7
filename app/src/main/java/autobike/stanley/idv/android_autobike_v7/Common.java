@@ -36,4 +36,83 @@ public class Common {
     public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
+
+    public static String checkLocation(String input){
+        if(input.equals("TPE00")){
+            return "總部";
+        }else if(input.equals("TPE01")){
+            return "台北車站";
+        } else if(input.equals("NTC01")){
+            return "板橋車站";
+        } else if(input.equals("TXG01")){
+            return "臺中車站";
+        } else if(input.equals("TNN01")){
+            return "台南車站";
+        } else if(input.equals("KHH01")){
+            return "高雄車站";
+        }else{
+            return "Location Check Error";
+        }
+    }
+
+    public static String idStaturCheck(String input){
+        if(input.equals("uncompleted")){
+            return "簡易註冊";
+        }else if(input.equals("unconfirmed")){
+            return "尚未認證";
+        } else if(input.equals("verifing")){
+            return "等待認證";
+        } else if(input.equals("confirmed")){
+            return "認證合格";
+        }else{
+            return "Status Check Error";
+        }
+    }
+
+    public static String ordStaturCheck(String input){
+        if(input.equals("unpaid")){
+            return "待繳費";
+        }else if(input.equals("unoccupied")){
+            return "未交車";
+        } else if(input.equals("noshow")){
+            return "逾期未交車";
+        } else if(input.equals("noreturn")){
+            return "未還車";
+        }else if(input.equals("canceled")){
+            return "訂單取消";
+        }else if(input.equals("closed")){
+            return "正常結案";
+        }else if(input.equals("other")){
+            return "其他";
+        }else if(input.equals("abnormalclosed")){
+            return "異常結案";
+        }else{
+            return "Order Status Check Error";
+        }
+    }
+
+    public static String motorStaturCheck(String input){
+        if(input.equals("unleasable")){
+            return "不可租";
+        }else if(input.equals("leasable")){
+            return "可出租";
+        } else if(input.equals("reserved")){
+            return "已預約";
+        } else if(input.equals("occupied")){
+            return "出租中";
+        }else if(input.equals("dispatching")){
+            return "調度中";
+        }else if(input.equals("seconsale")){
+            return "二手上架中";
+        }else if(input.equals("secreserved")){
+            return "二手已預約";
+        }else if(input.equals("secpause")){
+            return "二手未上架";
+        }else if(input.equals("secsaled")){
+            return "二手已售出";
+        }else{
+            return "Motor Status Check Error";
+        }
+    }
+
 }

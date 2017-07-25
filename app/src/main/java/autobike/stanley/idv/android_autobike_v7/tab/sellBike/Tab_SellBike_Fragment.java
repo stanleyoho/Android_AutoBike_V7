@@ -99,13 +99,16 @@ public class Tab_SellBike_Fragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView ivImage;
-            TextView sellMotorTitle, sellMotorDetail;
+            TextView sellMotorTitle, tvSellMotorNumber,tvsellMotorMils,tvsellMotosLocNow,tvsellMotostatus;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 ivImage = (ImageView)itemView.findViewById(R.id.ivSellMotorImage) ;
                 sellMotorTitle = (TextView) itemView.findViewById(R.id.tvSellMotorTitle);
-                sellMotorDetail = (TextView) itemView.findViewById(R.id.tvSellMotorDetail);
+                tvSellMotorNumber = (TextView) itemView.findViewById(R.id.tvSellMotorNumber);
+                tvsellMotorMils = (TextView) itemView.findViewById(R.id.tvsellMotorMils);
+                tvsellMotosLocNow = (TextView) itemView.findViewById(R.id.tvsellMotosLocNow);
+                tvsellMotostatus = (TextView) itemView.findViewById(R.id.tvsellMotostatus);
             }
         }
 
@@ -127,8 +130,11 @@ public class Tab_SellBike_Fragment extends Fragment {
             String mototype = motor.getModtype();
             int imageSize = 200;
             new GetMotorModelImageByMotoType(viewHolder.ivImage).execute(url, mototype, imageSize);
-            viewHolder.sellMotorTitle.setText("機車型號 : " + motor.getModtype());
-            viewHolder.sellMotorDetail.setText("車牌號碼: " + motor.getPlateno() + "\r\n" + "機車狀態: " + motor.getStatus() + "\r\n" + "機車里程數 : " + motor.getMile() +  "\r\n" + "機車所在地 : " +motor.getLocno());
+            viewHolder.sellMotorTitle.setText(motor.getModtype());
+            viewHolder.tvSellMotorNumber.setText(motor.getPlateno());
+            viewHolder.tvsellMotorMils.setText(String.valueOf(motor.getMile()));
+            viewHolder.tvsellMotosLocNow.setText(Common.checkLocation(motor.getLocno()));
+            viewHolder.tvsellMotostatus.setText(Common.motorStaturCheck(motor.getStatus()));
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -1,5 +1,7 @@
 package autobike.stanley.idv.android_autobike_v7.tab.sellBike;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.MainActivity;
 import autobike.stanley.idv.android_autobike_v7.Profile;
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.SellOrder;
+import autobike.stanley.idv.android_autobike_v7.tab.rentbike.AddOrderTask;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Motor;
 import autobike.stanley.idv.android_autobike_v7.tab.rentbike.Tab_RentBike_Pay;
 
@@ -37,17 +41,42 @@ public class tab_sell_bike_pay extends AppCompatActivity {
         btnsellpaybutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SellOrder sellOrder = new SellOrder();
-                sellOrder.setMemno(profile.getData("Memno"));
-                sellOrder.setMotorno(((Motor)bundle.getSerializable("sellmotor")).getMotno());
-                new AddSecOrdTask().execute(Common.URL_SecOrdServlet,sellOrder);
-                //clean previous activity
-                Intent intent = new Intent();
-                intent.setClass(tab_sell_bike_pay.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
+                if("".equals(etsellcard1.getText().toString().trim()) || "".equals(etsellcard2.getText().toString().trim()) ||
+                        "".equals(etsellcard3.getText().toString().trim()) || "".equals(etsellcard4.getText().toString().trim()) ||
+                        "".equals(etsellcardsec.getText().toString().trim())){
+                    Toast.makeText(tab_sell_bike_pay.this,"please fill all the data",Toast.LENGTH_SHORT).show();
+                }else{
+                    final AlertDialog build=
+                            new AlertDialog.Builder(tab_sell_bike_pay.this)
+                                    .setIcon(R.drawable.ic_alert)
+                                    .setTitle("Really?")
+                                    .setMessage("確定付款?")
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            SellOrder sellOrder = new SellOrder();
+                                            sellOrder.setMemno(profile.getData("Memno"));
+                                            sellOrder.setMotorno(((Motor)bundle.getSerializable("sellmotor")).getMotno());
+                                            new AddSecOrdTask().execute(Common.URL_SecOrdServlet,sellOrder);
+                                            //clean previous activity
+                                            Intent intent = new Intent();
+                                            intent.setClass(tab_sell_bike_pay.this, MainActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            intent.putExtras(bundle);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }).create();
+                    build.show();
+
+                }
+
             }
         });
 

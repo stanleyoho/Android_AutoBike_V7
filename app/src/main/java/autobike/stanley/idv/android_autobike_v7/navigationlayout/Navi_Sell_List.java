@@ -97,7 +97,7 @@ public class Navi_Sell_List extends Fragment {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            holder.tvSellStatus.setText(sellOrder.getStatus());
+            holder.tvSellStatus.setText(Common.ordStaturCheck(sellOrder.getStatus()));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             holder.tvSellDate.setText(sdf.format(sellOrder.getBuildtime()));
         }
