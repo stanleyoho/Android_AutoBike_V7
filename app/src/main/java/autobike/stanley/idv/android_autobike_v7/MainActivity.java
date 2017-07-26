@@ -219,8 +219,8 @@ public class MainActivity extends FragmentActivity {
 
     private void askPermissions(){
         String[] permissions = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
         Set<String> permissionsRequest = new HashSet<>();

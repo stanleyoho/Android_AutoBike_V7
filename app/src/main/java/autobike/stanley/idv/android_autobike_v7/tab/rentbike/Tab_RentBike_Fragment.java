@@ -60,7 +60,7 @@ public class Tab_RentBike_Fragment extends Fragment {
         vpList.add(R.drawable.mm107);
         ivvpImage = (ImageView) view.findViewById(R.id.ivvpImage);
         vppager = (ViewPager)view.findViewById(R.id.vppager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), vpList);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), vpList);
         vppager.setAdapter(viewPagerAdapter);
         return view;
     }
@@ -91,11 +91,11 @@ public class Tab_RentBike_Fragment extends Fragment {
         super.onStart();
         if(timer == null){
             timer = new Timer();
-            timer.scheduleAtFixedRate(new MyTimeTask(),1000,1000);
+            timer.scheduleAtFixedRate(new MyTimeTask(),3000,3000);
         }else{
             timer.cancel();
             timer = new Timer();
-            timer.scheduleAtFixedRate(new MyTimeTask(),1000,1000);
+            timer.scheduleAtFixedRate(new MyTimeTask(),3000,3000);
         }
 
         String[] days = {"1", "2", "3", "4","5","6","7"};

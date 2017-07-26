@@ -142,6 +142,8 @@ public class Navi_IDCheck extends Fragment {
                 String image3 = Base64.encodeToString(changeImageViewToByte(ivid3), Base64.DEFAULT);
                 new UpdateIDCheckImageTask().execute(Common.URL_MemServlet,memno,image1,image2,image3);
                 Toast.makeText(getActivity(),"Update OK!",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
             }
         });
     }

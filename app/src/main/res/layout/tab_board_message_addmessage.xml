@@ -14,44 +14,47 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp" >
 
             <ImageView
                 android:id="@+id/ivSpot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"
-                android:src="@drawable/board" />
-
-            <Button
-                android:id="@+id/btPickPicture"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonshape"
-                android:onClick="onPickPictureClick"
-                android:layout_marginLeft="10dp"
-                android:text="@string/text_PickPicture"
-                android:layout_alignBaseline="@+id/btTakePicture"
-                android:layout_alignBottom="@+id/btTakePicture"
-                android:layout_toRightOf="@+id/btTakePicture"
-                android:layout_toEndOf="@+id/btTakePicture" />
-
-            <Button
-                android:id="@+id/btTakePicture"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/ivSpot"
-                android:background="@drawable/buttonshape"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_vertical"
+                android:maxWidth="250dp"
+                android:maxHeight="300dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/ivSpot"
-                android:onClick="onTakePictureClick"
-                android:text="@string/text_TakePicture" />
-        </RelativeLayout>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/board" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btPickPicture"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:onClick="onPickPictureClick"
+        android:layout_marginLeft="10dp"
+        android:text="@string/text_PickPicture" />
+
+    <Button
+        android:id="@+id/btTakePicture"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonshape"
+        android:onClick="onTakePictureClick"
+        android:layout_marginLeft="10dp"
+        android:text="@string/text_TakePicture" />
+
+</LinearLayout>
+
 
         <EditText
             android:id="@+id/etTitle"

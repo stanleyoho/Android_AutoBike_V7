@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AutoBike_V7</string>
+    <string name="app_name">AutoBike</string>
     <string name="login_title">登入或註冊</string>
     <string name="use_e_mail">使用電子郵件註冊</string>
     <string name="login_login">已有帳戶?登入</string>

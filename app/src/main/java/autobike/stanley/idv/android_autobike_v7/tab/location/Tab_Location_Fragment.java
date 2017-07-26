@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,7 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
     private LocationManager mLocManager;
     private List<autobike.stanley.idv.android_autobike_v7.tab.location.Location> locationList;
     private View rootView;
+    private Location location;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,13 +70,26 @@ public class Tab_Location_Fragment extends Fragment implements OnMapReadyCallbac
 
     private void setMap() {
         mLocManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        Location location = mLocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED) {
+
+            location = mLocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+
+        } else {
+            Toast.makeText(getActivity(), "error_permission_map", Toast.LENGTH_LONG).show();
+        }
+
+
         map.setTrafficEnabled(true);
         uiSettings = map.getUiSettings();
         //開啟控制板
         uiSettings.setZoomControlsEnabled(true);
         uiSettings.setRotateGesturesEnabled(true);
         uiSettings.setScrollGesturesEnabled(true);;
+
 
         //定位權限判斷
         if (ActivityCompat.checkSelfPermission(getContext(),

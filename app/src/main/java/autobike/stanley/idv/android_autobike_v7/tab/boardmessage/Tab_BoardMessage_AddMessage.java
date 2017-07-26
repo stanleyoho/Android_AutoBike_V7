@@ -65,7 +65,7 @@ public class Tab_BoardMessage_AddMessage extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        file = new File(file, "picture.jpg");
+        file = new File(file, "picturemes.jpg");
         Uri contentUri = FileProvider.getUriForFile(
                 this, getPackageName() + ".provider", file);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
@@ -152,7 +152,7 @@ public class Tab_BoardMessage_AddMessage extends AppCompatActivity {
             int count = 0;
             try {
                 getResult = new BoardMesInsertTask().execute(Common.URL_MessageBoardServlet,  boardMessage, imageBase64).get();
-                if(getResult.equals("OK")){
+                if(getResult.equals("InsertOK")){
                     Toast.makeText(this,"InsertOK",Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(this,"InsertFail",Toast.LENGTH_SHORT).show();
