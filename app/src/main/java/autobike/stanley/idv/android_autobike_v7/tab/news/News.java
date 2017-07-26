@@ -1,12 +1,13 @@
 package autobike.stanley.idv.android_autobike_v7.tab.news;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by Stanley_NB on 2017/6/28.
  */
 
-public class News {
+public class News implements Serializable{
     private String newsno;
     private String admno;
     private Timestamp date;

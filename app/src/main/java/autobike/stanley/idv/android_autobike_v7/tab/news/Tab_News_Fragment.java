@@ -2,6 +2,7 @@ package autobike.stanley.idv.android_autobike_v7.tab.news;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -15,12 +16,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
 import autobike.stanley.idv.android_autobike_v7.R;
 import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMesGetAllTask;
 import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.BoardMessage;
+import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_DetailMessage;
 import autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_Fragment;
 
 public class Tab_News_Fragment extends Fragment {
@@ -28,11 +31,13 @@ public class Tab_News_Fragment extends Fragment {
     private final static String TAG = "NewsFragment";
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView rvNews;
+    private Bundle bundle;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_news_fragment, container, false);
+        bundle  = new Bundle();
         rvNews = (RecyclerView) view.findViewById(R.id.rvNews);
         rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
         swipeRefreshLayout =
@@ -92,12 +97,12 @@ public class Tab_News_Fragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView ivimage;
-            TextView NewsTitle, NewsDetail;
+            TextView tvNewsDate, NewsDetail;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 ivimage = (ImageView)itemView.findViewById(R.id.ivNewsImage);
-                NewsTitle = (TextView) itemView.findViewById(R.id.tvNewsTitle);
+                tvNewsDate = (TextView) itemView.findViewById(R.id.tvNewsDate);
                 NewsDetail = (TextView) itemView.findViewById(R.id.tvNewsDetail);
             }
         }
@@ -115,29 +120,20 @@ public class Tab_News_Fragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final Tab_News_Fragment.NewsRecyclerViewAdapter.ViewHolder viewHolder, int position) {
-            News news = newsList.get(position);
+            final News news = newsList.get(position);
             new GetNewsImageTask(viewHolder.ivimage).execute(Common.URL_NewsServlet,news.getNewsno(),250);
-            viewHolder.NewsTitle.setText("最新消息編號 : " + news.getNewsno());
-            viewHolder.NewsDetail.setText("消息類別: " + news.getTitle() + "\r\n" + "消息內容: " + news.getCont() + "\r\n" );
-//            viewHolder.motorNewsDetail.setVisibility(
-//                    motorExpanded[position] ? View.VISIBLE : View.GONE);
-//            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    expand(viewHolder.getAdapterPosition());
-//                }
-//            });
-        }
-
-        private void expand(int position) {
-            // 被點擊的資料列才會彈出內容，其他資料列的內容會自動縮起來
-            // for (int i=0; i<newsExpanded.length; i++) {
-            // newsExpanded[i] = false;
-            // }
-            // newsExpanded[position] = true;/////
-//
-//            motorExpanded[position] = !motorExpanded[position];
-//            notifyDataSetChanged();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            viewHolder.tvNewsDate.setText("建立時間 : " + sdf.format(news.getDate()));
+            viewHolder.NewsDetail.setText(news.getCont() );
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    bundle.putSerializable("news",news);
+                    Intent intent = new Intent(getActivity(),tab_news_detailnews.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

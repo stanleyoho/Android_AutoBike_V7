@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fef934"
     tools:context="autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_AddMessage">
 
     <LinearLayout
@@ -30,10 +31,14 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/btTakePicture"
-                android:layout_toRightOf="@+id/btTakePicture"
+                android:background="@drawable/buttonshape"
                 android:onClick="onPickPictureClick"
-                android:text="@string/text_PickPicture" />
+                android:layout_marginLeft="10dp"
+                android:text="@string/text_PickPicture"
+                android:layout_alignBaseline="@+id/btTakePicture"
+                android:layout_alignBottom="@+id/btTakePicture"
+                android:layout_toRightOf="@+id/btTakePicture"
+                android:layout_toEndOf="@+id/btTakePicture" />
 
             <Button
                 android:id="@+id/btTakePicture"
@@ -41,6 +46,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/ivSpot"
+                android:background="@drawable/buttonshape"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/ivSpot"
                 android:onClick="onTakePictureClick"
                 android:text="@string/text_TakePicture" />
@@ -81,6 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/btCancel"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/buttonshape"
                 android:onClick="onFinishInsertClick"
                 android:text="@string/text_Insert" />
 
@@ -89,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/btFinishInsert"
+                android:background="@drawable/buttonshape"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:onClick="onCancelClick"

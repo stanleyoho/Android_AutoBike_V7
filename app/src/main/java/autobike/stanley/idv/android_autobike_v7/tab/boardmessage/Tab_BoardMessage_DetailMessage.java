@@ -1,10 +1,9 @@
 package autobike.stanley.idv.android_autobike_v7.tab.boardmessage;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.widget.ImageView;
 import android.widget.TextView;
 

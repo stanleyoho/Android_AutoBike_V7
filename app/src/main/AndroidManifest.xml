@@ -56,7 +56,8 @@
         <activity android:name=".tab.rentbike.Tab_RentBike_Pay" />
         <activity android:name=".tab.sellBike.tab_sell_bike_pay" />
         <activity android:name=".tab.boardmessage.Tab_BoardMessage_AddMessage" />
-        <activity android:name=".tab.boardmessage.Tab_BoardMessage_DetailMessage"></activity>
+        <activity android:name=".tab.boardmessage.Tab_BoardMessage_DetailMessage" />
+        <activity android:name=".tab.news.tab_news_detailnews"></activity>
     </application>
 
 </manifest>

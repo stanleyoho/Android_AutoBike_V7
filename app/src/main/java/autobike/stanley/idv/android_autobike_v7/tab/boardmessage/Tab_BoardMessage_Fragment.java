@@ -23,6 +23,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import autobike.stanley.idv.android_autobike_v7.Common;
@@ -112,8 +113,10 @@ public class Tab_BoardMessage_Fragment extends Fragment {
             String mesno = boardmes.getMesno();
             int imageSize = 250;
             new BoardMessageGetImageTask(myViewHolder.imageView).execute(url, mesno, imageSize);
-            myViewHolder.tvName.setText(boardmes.getMemno());
-            myViewHolder.tvPhoneNo.setText(boardmes.getMemno());
+            //test
+            myViewHolder.tvName.setText(boardmes.getCont());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            myViewHolder.tvPhoneNo.setText("建立時間 : "+sdf.format(boardmes.getDate()));
 
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

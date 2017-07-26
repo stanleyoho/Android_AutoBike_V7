@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#faf337"
-    tools:context="autobike.stanley.idv.android_autobike_v7.tab.boardmessage.Tab_BoardMessage_DetailMessage"
-    android:weightSum="1">
+    tools:context="autobike.stanley.idv.android_autobike_v7.tab.news.tab_news_detailnews">
 
     <TextView
         android:layout_width="match_parent"
@@ -30,7 +29,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivMessageImage"
+            android:id="@+id/ivNewsDetailImage"
             android:scaleType="fitCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="0.04" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -64,7 +63,7 @@
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tvMessageContent"
+            android:id="@+id/tvNewsDetailContent"
             android:inputType="textMultiLine"
             android:textSize="20sp"
             android:text="0123456kl;ksjda;lfksajssdfasdfasdfasdfasfdasdfsdafsadfasf"
@@ -76,6 +75,5 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
 
 </LinearLayout>
