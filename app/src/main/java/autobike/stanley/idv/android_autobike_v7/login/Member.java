@@ -18,6 +18,8 @@ public class Member implements Serializable{
     private String addr;
     private String acc;
     private String pwd;
+    private Timestamp credate;
+    private String status;
 
     public String getMemno() {
         return memno;
@@ -107,6 +109,5 @@ public class Member implements Serializable{
         this.status = status;
     }
 
-    private Timestamp credate;
-    private String status;
+
 }

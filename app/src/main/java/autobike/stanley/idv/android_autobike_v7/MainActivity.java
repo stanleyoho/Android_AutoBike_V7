@@ -24,14 +24,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import autobike.stanley.idv.android_autobike_v7.login.LoginActivity;
-import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByAccTask;
 import autobike.stanley.idv.android_autobike_v7.login.LoginGetMemberVOByMemnoTask;
 import autobike.stanley.idv.android_autobike_v7.login.Member;
 import autobike.stanley.idv.android_autobike_v7.navigationlayout.Navi_IDCheck;

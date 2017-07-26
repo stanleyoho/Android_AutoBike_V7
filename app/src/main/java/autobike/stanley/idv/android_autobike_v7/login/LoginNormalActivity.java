@@ -77,9 +77,9 @@ public class LoginNormalActivity extends AppCompatActivity {
                 Log.e(TAG, e.toString());
             }
             if (member == null ) {
-                Common.showToast(this, R.string.msg_NoMotorFound);
+//                Common.showToast(this, R.string.msg_NoMotorFound);
             } else {
-                Toast.makeText(this, "Got MEMBER VO", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Got MEMBER VO", Toast.LENGTH_SHORT).show();
             }
             progressDialog.cancel();
 

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         profile = new Profile(this);
-        Toast.makeText(this,"Memno : " + profile.getData("Memno"),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"Memno : " + profile.getData("Memno"),Toast.LENGTH_SHORT).show();
     }
 
 }

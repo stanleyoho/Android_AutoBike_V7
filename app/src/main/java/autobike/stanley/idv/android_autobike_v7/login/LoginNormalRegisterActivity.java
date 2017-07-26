@@ -77,6 +77,7 @@ public class LoginNormalRegisterActivity extends AppCompatActivity {
                 String regAdd = etRegisterAddr.getText().toString();
                 String regPhone = etRegisterPhone.getText().toString();
                 String regBirthday = tvRegisterBirthdayResult.getText().toString();
+//                Toast.makeText(LoginNormalRegisterActivity.this,regBirthday,Toast.LENGTH_SHORT).show();
                 String regSelectedText = rgSelected.getText().toString();
 
                 if(regAccount.length() == 0 || regPassword.length() == 0 || regPasswordAgain.length() == 0 || regID.length() == 0 ||

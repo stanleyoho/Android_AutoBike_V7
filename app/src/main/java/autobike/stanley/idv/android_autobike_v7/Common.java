@@ -10,7 +10,7 @@ public class Common {
 
 //    public static String URL = "http://192.168.196.189:8080/Spot_MySQL_Web/";
 //    public static String URL = "http://10.0.2.2:8081/Spot_MySQL_Web/";
-    public static String temp = "192.168.196.212";
+    public static String temp = "192.168.43.99";
     public static String URL = "http://"+temp+":8081/AutoBike_Android_Server/";//10.0.2.2
     public static String URL_MemServlet = "http://"+temp+":8081/AutoBike_Android_Server/MemberServlet";
     public static String URL_SecOrdServlet = "http://"+temp+":8081/AutoBike_Android_Server/SecOrdServlet";
@@ -86,6 +86,12 @@ public class Common {
             return "其他";
         }else if(input.equals("abnormalclosed")){
             return "異常結案";
+        }else if(input.equals("paid")){
+            return "已付款";
+        }else if(input.equals("overtime")){
+            return "逾期未還";
+        }else if(input.equals("available")){
+            return "可找到";
         }else{
             return "Order Status Check Error";
         }
@@ -110,6 +116,8 @@ public class Common {
             return "二手未上架";
         }else if(input.equals("secsaled")){
             return "二手已售出";
+        }else if(input.equals("other")){
+            return "其他";
         }else{
             return "Motor Status Check Error";
         }
