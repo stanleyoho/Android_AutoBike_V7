@@ -170,7 +170,7 @@ public class Tab_RentBike_Fragment extends Fragment {
                 bundle.putString("Rentday",spDays.getSelectedItem().toString());
                 bundle.putString("Date",tvdateResult.getText().toString());
                 bundle.putString("Time",tvtimeResult.getText().toString());
-                if(profile.getData("Memstatus").equals("confirmed")){
+                if(profile.getData("Memstatus").equals("confirmed") ){
                     Intent intent = new Intent();
                     intent.putExtras(bundle);
                     intent.setClass(getActivity(),Tab_RentBike_SearchResult.class);

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android_AutoBike.iml" filepath="$PROJECT_DIR$/Android_AutoBike.iml" />
       <module fileurl="file://$PROJECT_DIR$/Android_AutoBike_V7.iml" filepath="$PROJECT_DIR$/Android_AutoBike_V7.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

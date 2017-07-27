@@ -64,6 +64,10 @@ public class Navi_IDCheck extends Fragment {
             Toast.makeText(getActivity(),"認證已完成",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
+        }else if (profile.getData("Memstatus").equals("verifing")){
+            Toast.makeText(getActivity(),"認證中",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
         }
         /////check status
 //        String memStatus = profile.getData("Memstatus");
